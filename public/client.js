@@ -31,7 +31,7 @@ const disableButtons = async () => {
 };
 
 //Enables all buttons (except starting button)
-const enableButtons = async () => {
+const  = async () => {
     if (opponent == undefined) {
         opponent = 'Guest';
     }
