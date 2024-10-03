@@ -290,9 +290,9 @@ class DataStore {
         return updated;
     }
 
-    // Resets the gameid
-    async resetGame(gameid) {
-        const updated = await this.update('Games', [
+    // Resets the all columns of the game using gameid
+    async resetGame(gameid, username) {
+        let updated = await this.update('Games', [
             { column: 'playeramt', value: 1 },
             { column: 'p1ones', value: '0' },
             { column: 'p1twos', value: '0' },
@@ -320,6 +320,20 @@ class DataStore {
             { column: 'p2lgstraight', value: '0' },
             { column: 'p2yahtzee', value: '0' },
             { column: 'p2chance', value: '0' }],
+            [{ column: 'gameid', value: gameid }]);
+
+        let player;
+        const game = await this.read('Games', [{ column: 'gameid', value: gameid }], '*');
+
+        if (game[0].p1username == username) {
+            player = 'p1';
+        }
+        else if (game[0].p2username == username) {
+            player = 'p2';
+        }
+
+        updated = await this.update('Games', [
+            { column: player + 'username', value: 'None' }],
             [{ column: 'gameid', value: gameid }]);
 
         return updated;

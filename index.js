@@ -120,8 +120,8 @@ const findPlayersFromDb = async (gameid) => {
 };
 
 // If a player leaves, the game is reset to have all 0 values for both players
-const resetDbForGame = async (gameid) => { 
-    await db.resetGame(gameid);
+const resetDbForGame = async (gameid, username) => { 
+    await db.resetGame(gameid, username);
 };
 
 // Socket functions
@@ -158,7 +158,7 @@ io.on('connection', (sock) => {
     // If a player leaves the game
     sock.on('left', (room) => {
         sock.join(0);
-        resetDbForGame(room.gameid);
+        resetDbForGame(room.gameid, room.username);
         io.in(room.gameid).emit('reset');
     });
 

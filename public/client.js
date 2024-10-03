@@ -217,7 +217,7 @@ const onStartSubmitted = async (event) => {
 // If a player leaves the game it will reset game and then redirect the player
 const onLeaveSubmitted = async (event) => {
     event.preventDefault();
-    sock.emit('left', { gameid: gameid });
+    sock.emit('left', { gameid: gameid, username: username });
     sock.emit('message', { gameid: gameid, text: 'Opponent has left.' });
     location.assign('/'); // https://sentry.io/answers/redirect-to-another-page-using-javascript/#:~:text=Navigating%20to%20a%20new%20page,assign()%20.&text=By%20using%20assign()%20%2C%20the,not%20change%20the%20browser's%20history.
 }
