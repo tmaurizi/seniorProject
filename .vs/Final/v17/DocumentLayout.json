@@ -1,0 +1,298 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tay88\\Downloads\\Senior Project\\final\\public\\client.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:public\\client.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tay88\\Downloads\\Senior Project\\final\\views\\game.pug||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:views\\game.pug||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tay88\\Downloads\\Senior Project\\final\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tay88\\Downloads\\Senior Project\\final\\public\\functions.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:public\\functions.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tay88\\Downloads\\Senior Project\\final\\db.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:db.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tay88\\Downloads\\Senior Project\\final\\public\\lobbyClient.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:public\\lobbyClient.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tay88\\Downloads\\Senior Project\\final\\views\\layout.pug||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:views\\layout.pug||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tay88\\Downloads\\Senior Project\\final\\views\\home.pug||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:views\\home.pug||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tay88\\Downloads\\Senior Project\\final\\views\\history.pug||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:views\\history.pug||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tay88\\Downloads\\Senior Project\\final\\routes\\homepage.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:routes\\homepage.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tay88\\Downloads\\Senior Project\\final\\views\\signup.pug||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:views\\signup.pug||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tay88\\Downloads\\Senior Project\\final\\views\\login.pug||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:views\\login.pug||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tay88\\Downloads\\Senior Project\\final\\views\\availableGames.pug||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:views\\availableGames.pug||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tay88\\Downloads\\Senior Project\\final\\routes\\accounts.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:routes\\accounts.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tay88\\Downloads\\Senior Project\\final\\public\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:public\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tay88\\Downloads\\Senior Project\\final\\package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:package.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tay88\\Downloads\\Web application design\\Final Project\\public\\contactStyle.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "layout.pug",
+              "DocumentMoniker": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\views\\layout.pug",
+              "RelativeDocumentMoniker": "views\\layout.pug",
+              "ToolTip": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\views\\layout.pug",
+              "RelativeToolTip": "views\\layout.pug",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
+              "WhenOpened": "2024-09-12T23:49:05.91Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "client.js",
+              "DocumentMoniker": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\public\\client.js",
+              "RelativeDocumentMoniker": "public\\client.js",
+              "ToolTip": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\public\\client.js",
+              "RelativeToolTip": "public\\client.js",
+              "ViewState": "AQIAABcAAAAAAAAAAAAAAB8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-09-12T23:57:54.346Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "index.js",
+              "DocumentMoniker": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\index.js",
+              "RelativeDocumentMoniker": "index.js",
+              "ToolTip": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\index.js",
+              "RelativeToolTip": "index.js",
+              "ViewState": "AQIAAJEAAAAAAAAAAAAAAKUAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-09-17T21:15:18.446Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "game.pug",
+              "DocumentMoniker": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\views\\game.pug",
+              "RelativeDocumentMoniker": "views\\game.pug",
+              "ToolTip": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\views\\game.pug",
+              "RelativeToolTip": "views\\game.pug",
+              "ViewState": "AQIAACoAAAAAAAAAAAAAAD4AAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
+              "WhenOpened": "2024-09-12T23:49:00.913Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "home.pug",
+              "DocumentMoniker": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\views\\home.pug",
+              "RelativeDocumentMoniker": "views\\home.pug",
+              "ToolTip": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\views\\home.pug",
+              "RelativeToolTip": "views\\home.pug",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
+              "WhenOpened": "2024-09-12T23:55:14.028Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "history.pug",
+              "DocumentMoniker": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\views\\history.pug",
+              "RelativeDocumentMoniker": "views\\history.pug",
+              "ToolTip": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\views\\history.pug",
+              "RelativeToolTip": "views\\history.pug",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
+              "WhenOpened": "2024-09-30T19:01:54.122Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "signup.pug",
+              "DocumentMoniker": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\views\\signup.pug",
+              "RelativeDocumentMoniker": "views\\signup.pug",
+              "ToolTip": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\views\\signup.pug",
+              "RelativeToolTip": "views\\signup.pug",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAAoAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
+              "WhenOpened": "2024-09-17T22:22:53.245Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "db.js",
+              "DocumentMoniker": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\db.js",
+              "RelativeDocumentMoniker": "db.js",
+              "ToolTip": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\db.js",
+              "RelativeToolTip": "db.js",
+              "ViewState": "AQIAADkBAAAAAAAAAAAAACUBAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-09-23T19:00:48.272Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "functions.js",
+              "DocumentMoniker": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\public\\functions.js",
+              "RelativeDocumentMoniker": "public\\functions.js",
+              "ToolTip": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\public\\functions.js",
+              "RelativeToolTip": "public\\functions.js",
+              "ViewState": "AQIAABMBAAAAAAAAAAAAABABAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-09-12T23:55:26.112Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "homepage.js",
+              "DocumentMoniker": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\routes\\homepage.js",
+              "RelativeDocumentMoniker": "routes\\homepage.js",
+              "ToolTip": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\routes\\homepage.js",
+              "RelativeToolTip": "routes\\homepage.js",
+              "ViewState": "AQIAADMAAAAAAAAAAAAAADAAAABNAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-09-17T22:03:04.891Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "lobbyClient.js",
+              "DocumentMoniker": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\public\\lobbyClient.js",
+              "RelativeDocumentMoniker": "public\\lobbyClient.js",
+              "ToolTip": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\public\\lobbyClient.js",
+              "RelativeToolTip": "public\\lobbyClient.js",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABgAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-09-19T19:01:04.459Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "login.pug",
+              "DocumentMoniker": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\views\\login.pug",
+              "RelativeDocumentMoniker": "views\\login.pug",
+              "ToolTip": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\views\\login.pug",
+              "RelativeToolTip": "views\\login.pug",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
+              "WhenOpened": "2024-09-12T23:54:37.971Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "availableGames.pug",
+              "DocumentMoniker": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\views\\availableGames.pug",
+              "RelativeDocumentMoniker": "views\\availableGames.pug",
+              "ToolTip": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\views\\availableGames.pug",
+              "RelativeToolTip": "views\\availableGames.pug",
+              "ViewState": "AQIAABsAAAAAAAAAAAAAAAcAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
+              "WhenOpened": "2024-09-17T21:12:08.523Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "accounts.js",
+              "DocumentMoniker": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\routes\\accounts.js",
+              "RelativeDocumentMoniker": "routes\\accounts.js",
+              "ToolTip": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\routes\\accounts.js",
+              "RelativeToolTip": "routes\\accounts.js",
+              "ViewState": "AQIAAEsAAAAAAAAAAAAAADYAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-09-23T19:14:51.149Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "style.css",
+              "DocumentMoniker": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\public\\style.css",
+              "RelativeDocumentMoniker": "public\\style.css",
+              "ToolTip": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\public\\style.css",
+              "RelativeToolTip": "public\\style.css",
+              "ViewState": "AQIAAGMAAAAAAAAAAAAAACEAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-09-11T23:47:59.933Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "package.json",
+              "DocumentMoniker": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\package.json",
+              "RelativeDocumentMoniker": "package.json",
+              "ToolTip": "C:\\Users\\tay88\\Downloads\\Senior Project\\final\\package.json",
+              "RelativeToolTip": "package.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-10-03T04:03:21.038Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "contactStyle.css",
+              "DocumentMoniker": "C:\\Users\\tay88\\Downloads\\Web application design\\Final Project\\public\\contactStyle.css",
+              "RelativeDocumentMoniker": "..\\..\\Web application design\\Final Project\\public\\contactStyle.css",
+              "ToolTip": "C:\\Users\\tay88\\Downloads\\Web application design\\Final Project\\public\\contactStyle.css",
+              "RelativeToolTip": "..\\..\\Web application design\\Final Project\\public\\contactStyle.css",
+              "ViewState": "AQIAAHIAAAAAAAAAAAAAAIAAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-09-17T22:25:16.219Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

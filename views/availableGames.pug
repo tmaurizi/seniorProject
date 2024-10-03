@@ -1,0 +1,34 @@
+extends layout.pug
+
+//- Page that has all the available games to choose from, as well as being able to create games
+
+block content
+	h1 Available Games!
+	button(id='refreshbtn', onclick='refreshButton()') Refresh page!
+	a.button(href='/history') History
+
+	.column
+		form(action='/create',method='post')
+			div 
+				button(id='createbtn', onclick='createGame') Create a new game!
+
+		each game in game_list
+			if game.playeramt<2
+				li: a(href="/"+game.gameid) #{game.gameid}
+
+	.column
+		h3 Leaderboard!
+		ol
+			each leader in leaderboard_list
+				li #{leader.totalPoints} ~ #{leader.username}
+	.column
+		div(id='lobbyChatHistory')
+
+		div
+		form(type='submit',id='chat-form')
+			input(type='text',id='chat')
+			button(id='say') Say
+
+	script(src='/socket.io/socket.io.js')
+	script(src='lobbyClient.js')
+		

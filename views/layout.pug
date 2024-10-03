@@ -1,0 +1,25 @@
+doctype html
+
+//- Header used at the beginning of every page 
+//- Contains login and username
+
+html
+	link(rel='stylesheet', href='/style.css')
+	head
+		title Yahtzee!
+	body
+		if !hide_login
+			if user
+				span
+					span Welcome back #{user.username}!							
+					a.button(href = '/logout') Logout
+			else
+				a.button(href = '/login') Login
+		button.right(id='instruction', onclick="popup('instructionPopup')") Instructions
+		div.popup(id='instructionPopup')
+			.popup-content.bordered
+				h1 Instructions
+				p Roll the dice!
+				button(id='closeInstruction', onclick="closePopup('instructionPopup')") Close
+		script(src='functions.js')
+		block content

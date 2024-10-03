@@ -1,0 +1,155 @@
+extends layout.pug
+
+//- Page that contains the game 
+//- Reference:
+//-		Sending the id to the function - https://stackoverflow.com/questions/4825295/onclick-to-get-the-id-of-the-clicked-button
+
+block content
+	br 
+	br
+	form(type='submit',id='leaveGame-form')
+		button(id='backbtn') Back
+		//-a.button(href='/') Back
+	h1 GAME #{game.gameid}
+
+	//- All player interactions (contains buttons)
+	.column.center
+		form(type='submit',id='startGame-form')
+			button(id='start') Start!
+
+		input.hidden(type='text',id='gameid',value=game.gameid,disabled)
+		if user
+			input.hidden(type='text',id='username',value=user.username,disabled)
+		else
+			input.hidden(type='text',id='username',value='Guest',disabled)
+
+		br
+		button(id='d1', onclick='saveDice(this.id)',disabled) 0
+		button(id='d2', onclick='saveDice(this.id)',disabled) 0
+		button(id='d3', onclick='saveDice(this.id)',disabled) 0
+		button(id='d4', onclick='saveDice(this.id)',disabled) 0
+		button(id='d5', onclick='saveDice(this.id)',disabled) 0
+		br
+
+		br
+		button(id='rollbtn', onclick='rollDice()',disabled) Roll 
+		form(type='submit',id='finish-form')
+			button(id='finishbtn',disabled) Finish Turn
+
+		br
+		br
+		div(id='chatHistory'+game.gameid)
+
+		div
+		form(type='submit',id='chat-form')
+			input(type='text',id='chat')
+			button(id='say') Say
+	
+		br
+		div(id='message')
+		h2 Possible Points!
+		div(id='possiblePoints') 
+		br
+
+		button(id='hintbtn',onclick="popup('hintPopup')",disabled) Hint
+		div.popup(id='hintPopup')
+			.popup-content.bordered
+				h1 Hint!
+				p(id='hintParagraph')
+				button(id='closeHint', onclick="closePopup('hintPopup')") Close
+
+	//- Contains table
+	.column.center
+		div(id='opponent')
+		table
+			thead
+				tr.bordered
+					th 
+					th Player 1
+					th Player 2
+					th 
+			tbody
+				tr
+					th Ones
+					td: div(id='p1ones') #{game.p1ones}
+					td: div(id='p2ones') #{game.p2ones}
+					td: button(id='ones',onclick='madeChoice(this.id)',disabled) Choose
+				tr
+					th Twos
+					td: div(id='p1twos') #{game.p1twos}
+					td: div(id='p2twos') #{game.p2twos}
+					td: button(id='twos',onclick='madeChoice(this.id)',disabled) Choose
+				tr
+					th Threes
+					td: div(id='p1threes') #{game.p1threes}
+					td: div(id='p2threes') #{game.p2threes}
+					td: button(id='threes',onclick='madeChoice(this.id)',disabled) Choose
+				tr
+					th Fours
+					td: div(id='p1fours') #{game.p1fours}
+					td: div(id='p2fours') #{game.p2fours}
+					td: button(id='fours',onclick='madeChoice(this.id)',disabled) Choose
+				tr
+					th Fives
+					td: div(id='p1fives') #{game.p1fives}
+					td: div(id='p2fives') #{game.p2fives}
+					td: button(id='fives',onclick='madeChoice(this.id)',disabled) Choose
+				tr
+					th Sixes
+					td: div(id='p1sixes') #{game.p1sixes}
+					td: div(id='p2sixes') #{game.p2sixes}
+					td: button(id='sixes',onclick='madeChoice(this.id)',disabled) Choose
+				tr.bordered
+					th Sum
+					td: div(id='p1uppersum') 0
+					td: div(id='p2uppersum') 0
+				tr.bordered
+					th Bonus
+					td: div(id='p1bonus') 0
+					td: div(id='p2bonus') 0
+				tr
+					th Three of a kind
+					td: div(id='p1threeok') #{game.p1threeok}
+					td: div(id='p2threeok') #{game.p2threeok}
+					td: button(id='threeok',onclick='madeChoice(this.id)',disabled) Choose
+				tr
+					th Four of a kind
+					td: div(id='p1fourok') #{game.p1fourok}
+					td: div(id='p2fourok') #{game.p2fourok}
+					td: button(id='fourok',onclick='madeChoice(this.id)',disabled) Choose
+				tr
+					th Fullhouse
+					td: div(id='p1fullhouse') #{game.p1fullhouse}
+					td: div(id='p2fullhouse') #{game.p2fullhouse}
+					td: button(id='fullhouse',onclick='madeChoice(this.id)',disabled) Choose
+				tr
+					th Small Straight
+					td: div(id='p1smstraight') #{game.p1smstraight}
+					td: div(id='p2smstraight') #{game.p2smstraight}
+					td: button(id='smstraight',onclick='madeChoice(this.id)',disabled) Choose
+				tr
+					th Large Straight
+					td: div(id='p1lgstraight') #{game.p1lgstraight}
+					td: div(id='p2lgstraight') #{game.p2lgstraight}
+					td: button(id='lgstraight',onclick='madeChoice(this.id)',disabled) Choose
+				tr
+					th Yahtzee
+					td: div(id='p1yahtzee') #{game.p1yahtzee}
+					td: div(id='p2yahtzee') #{game.p2yahtzee}
+					td: button(id='yahtzee',onclick='madeChoice(this.id)',disabled) Choose			
+				tr
+					th Chance
+					td: div(id='p1chance') #{game.p1chance}
+					td: div(id='p2chance') #{game.p2chance}
+					td: button(id='chance',onclick='madeChoice(this.id)',disabled) Choose
+				tr.bordered
+					th Total
+					td: div(id='p1total') 0
+					td: div(id='p2total') 0
+
+	//- Script sources
+	script(src='/socket.io/socket.io.js')
+	script(src='functions.js')
+	script(src='client.js')
+
+	

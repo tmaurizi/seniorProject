@@ -1,0 +1,11 @@
+extends layout.pug
+
+//- Starting page if there are no games in the database
+
+block content
+	h1 Home		
+
+	form(action='/create',method='post')
+		div 
+			button(id='createbtn', onclick='createGame') Create a new game!
+	

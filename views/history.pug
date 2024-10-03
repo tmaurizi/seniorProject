@@ -1,0 +1,18 @@
+extends layout.pug
+
+block content
+	h1 History
+	a.button(href='/') Back
+
+	table 
+		thead 
+			tr.bordered
+				th Game ID
+				th Total Points
+				th Opponent
+		tbody
+		each game in gamelist
+			tr
+				td #{game[0]}
+				td #{game[1]}
+				td #{game[2]}

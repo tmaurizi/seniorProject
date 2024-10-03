@@ -1,0 +1,29 @@
+extends layout.pug
+
+//- Page for players to sign up by making a username and password 
+
+block content
+	h1 Signup
+	form(action = '/signup', method='post')
+		p
+			input(type = 'email', placeholder = 'Email Address', name = 'email')
+		p
+			input(type = 'text', placeholder = 'Username', name = 'username')
+		p
+			label(for = 'password') Password
+			br
+			input(type = 'password', name = 'password1')
+		p
+			label(for = 'password2') Confirm Password
+			br
+			input(type = 'password', name = 'password2')
+
+		p
+			button(type = 'submit') Signup!
+		if message
+			p #{message}
+
+	p
+		a.button(href = '/login') Already have an account? Login!
+	p
+		a.button(href = '/') Play as guest

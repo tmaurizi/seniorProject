@@ -1,0 +1,109 @@
+/* CSS PAGE */
+
+* {
+    font-size: 1.05rem;
+    font-family: 'Gill Sans', sans-serif;
+}
+
+table {
+    text-align: center;
+    border: 0.15rem solid;
+    margin: 2rem;
+}
+
+button {
+    border-radius: 1rem;
+    border: 0.1rem solid;
+    cursor: pointer;
+}
+
+input[type=text] {
+    border-radius: 1rem;
+    border: 0.15rem solid;
+    padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+}
+
+input[type=password] {
+    border-radius: 1rem;
+    border: 0.15rem solid;
+    padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+}
+
+input[type=email] {
+    border-radius: 1rem;
+    border: 0.15rem solid;
+    padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+}
+
+.hidden {
+    background: white;
+    color: white;
+    font-size: 0.0001rem;
+    border-style: none;
+    border: none;
+}
+
+/*https://www.w3schools.com/howto/howto_css_two_columns.asp*/
+.column {
+    float: left;
+    width: 50%;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/*https://www.geeksforgeeks.org/how-to-create-popup-box-using-html-and-css/*/
+.popup {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+    display: none;
+}
+
+.popup-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888888;
+    width: 30%;
+    font-weight: bolder;
+}
+
+.popup-content button {
+    display: block;
+    margin: 0 auto;
+}
+
+.show {
+    display: block;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+.bordered {
+    outline: 0.15rem dotted;
+    border: 0.15rem dotted;
+}
+
+.button {
+    color: black;
+    border-radius: 1rem;
+    border: 0.1rem solid;
+    cursor: pointer;
+    padding: 0.1rem 0.5rem 0.1rem 0.5rem;
+    text-decoration: none;
+}
