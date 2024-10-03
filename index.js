@@ -111,12 +111,13 @@ const updatePlayerAfterGame = async (gameid, p1total, p2total) => {
 
 };
 
-const findPlayersFromDb = async (gameid) => { 
+// Finds the players that are in the database for a game using gameid
+const findPlayersFromDb = async (gameid) => {
     const p1username = await db.findPlayer1FromGameid(gameid);
     const p2username = await db.findPlayer2FromGameid(gameid);
 
     return [p1username, p2username];
-}
+};
 
 // If a player leaves, the game is reset to have all 0 values for both players
 const resetDbForGame = async (gameid) => { 
@@ -161,6 +162,7 @@ io.on('connection', (sock) => {
         io.in(room.gameid).emit('reset');
     });
 
+    // Gets the players from the database and passes them back to the client code
     sock.on('players', (room) => {
         let playerList = findPlayersFromDb(room.gameid);
         sock.emit('returnPlayers', playerList);

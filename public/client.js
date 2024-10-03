@@ -31,7 +31,7 @@ const disableButtons = async () => {
 };
 
 //Enables all buttons (except starting button)
-const  = async () => {
+const enableButtons = async () => {
     if (opponent == undefined) {
         opponent = 'Guest';
     }
@@ -107,6 +107,7 @@ const writeMessage = async (text) => {
     parent.appendChild(el);
 };
 
+// Displays the opponent on both players screens
 const showPlayers = async (players) => {
     if (players[0] == username) {
         opponent = players[1];
