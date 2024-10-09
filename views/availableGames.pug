@@ -22,12 +22,13 @@ block content
 			each leader in leaderboard_list
 				li #{leader.totalPoints} ~ #{leader.username}
 	.column
-		div(id='lobbyChatHistory')
+		div.textbox
+			div(id='lobbyChatHistory')
 
-		div
-		form(type='submit',id='chat-form')
-			input(type='text',id='chat')
-			button(id='say') Say
+			br
+			form(type='submit',id='chat-form')
+				input(type='text',id='chat')
+				button(id='say') Say
 
 	script(src='/socket.io/socket.io.js')
 	script(src='lobbyClient.js')

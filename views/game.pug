@@ -38,12 +38,13 @@ block content
 
 		br
 		br
-		div(id='chatHistory'+game.gameid)
+		div.textbox
+			div(id='chatHistory'+game.gameid)
 
-		div
-		form(type='submit',id='chat-form')
-			input(type='text',id='chat')
-			button(id='say') Say
+			br
+			form(type='submit',id='chat-form')
+				input(type='text',id='chat')
+				button(id='say') Say
 	
 		br
 		div(id='message')

@@ -107,3 +107,13 @@ input[type=email] {
     padding: 0.1rem 0.5rem 0.1rem 0.5rem;
     text-decoration: none;
 }
+
+/*https://stackoverflow.com/questions/21227287/make-div-scrollable*/
+.textbox {
+    width: 15rem;
+    height: 13rem;
+    overflow-y: auto;
+    float: left;
+    position: relative;
+    margin-left: -5px;
+}
