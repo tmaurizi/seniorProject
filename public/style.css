@@ -17,6 +17,10 @@ button {
     cursor: pointer;
 }
 
+hr {
+    border: 0.1rem dotted;
+}
+
 input[type=text] {
     border-radius: 1rem;
     border: 0.15rem solid;
@@ -44,9 +48,14 @@ input[type=email] {
 }
 
 /*https://www.w3schools.com/howto/howto_css_two_columns.asp*/
-.column {
+.column2 {
     float: left;
     width: 50%;
+}
+
+.column3 {
+    float: left;
+    width: 33%;
 }
 
 .center {
@@ -116,4 +125,10 @@ input[type=email] {
     float: left;
     position: relative;
     margin-left: -5px;
+}
+
+.box {
+    border: 0.1rem solid;
+    border-radius: 1rem;
+    border-color: black;
 }

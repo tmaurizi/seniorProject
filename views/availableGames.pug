@@ -4,10 +4,12 @@ extends layout.pug
 
 block content
 	h1 Available Games!
-	button(id='refreshbtn', onclick='refreshButton()') Refresh page!
-	a.button(href='/history') History
+	a.button.right(href='/history') History
 
-	.column
+	.column2
+		button(id='refreshbtn', onclick='refreshButton()') Refresh page!
+		br
+		br
 		form(action='/create',method='post')
 			div 
 				button(id='createbtn', onclick='createGame') Create a new game!
@@ -15,16 +17,18 @@ block content
 		each game in game_list
 			if game.playeramt<2
 				li: a(href="/"+game.gameid) #{game.gameid}
-
-	.column
+	
+	.column2
 		h3 Leaderboard!
 		ol
 			each leader in leaderboard_list
 				li #{leader.totalPoints} ~ #{leader.username}
-	.column
+	
+		p ----------------------------------------------
+		h3 Chatbox
 		div.textbox
 			div(id='lobbyChatHistory')
-
+			
 			br
 			form(type='submit',id='chat-form')
 				input(type='text',id='chat')

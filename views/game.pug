@@ -9,11 +9,10 @@ block content
 	br
 	form(type='submit',id='leaveGame-form')
 		button(id='backbtn') Back
-		//-a.button(href='/') Back
 	h1 GAME #{game.gameid}
 
 	//- All player interactions (contains buttons)
-	.column.center
+	.column3.center
 		form(type='submit',id='startGame-form')
 			button(id='start') Start!
 
@@ -35,32 +34,15 @@ block content
 		button(id='rollbtn', onclick='rollDice()',disabled) Roll 
 		form(type='submit',id='finish-form')
 			button(id='finishbtn',disabled) Finish Turn
-
-		br
-		br
-		div.textbox
-			div(id='chatHistory'+game.gameid)
-
-			br
-			form(type='submit',id='chat-form')
-				input(type='text',id='chat')
-				button(id='say') Say
-	
+ 
 		br
 		div(id='message')
 		h2 Possible Points!
 		div(id='possiblePoints') 
 		br
 
-		button(id='hintbtn',onclick="popup('hintPopup')",disabled) Hint
-		div.popup(id='hintPopup')
-			.popup-content.bordered
-				h1 Hint!
-				p(id='hintParagraph')
-				button(id='closeHint', onclick="closePopup('hintPopup')") Close
-
 	//- Contains table
-	.column.center
+	.column3.center
 		div(id='opponent')
 		table
 			thead
@@ -147,6 +129,24 @@ block content
 					th Total
 					td: div(id='p1total') 0
 					td: div(id='p2total') 0
+
+	//- Contains user hints and chatbox
+	.column3
+		button(id='hintbtn',onclick="popup('hintPopup')",disabled) Hint
+		div.popup(id='hintPopup')
+			.popup-content.bordered
+				h1 Hint!
+				p(id='hintParagraph')
+				button(id='closeHint', onclick="closePopup('hintPopup')") Close
+
+		h3 Chatbox
+		div.textbox
+			div(id='chatHistory'+game.gameid)
+
+			br
+			form(type='submit',id='chat-form')
+				input(type='text',id='chat')
+				button(id='say') Say
 
 	//- Script sources
 	script(src='/socket.io/socket.io.js')

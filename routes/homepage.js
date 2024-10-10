@@ -7,23 +7,27 @@ router.get('/', async (req, res) => {
 
     // Makes an array of the top 10 players in order of points
     let player_list = await req.db.findPlayerList();
+    let leaderboard_list = [];
     // Bubble sort algorithm to make it in ascending order
     // Reference https://www.geeksforgeeks.org/bubble-sort-algorithms-by-using-javascript/
-    for (let i = 0; i < player_list.length; i++) {
-        for (let j = 0; j < (player_list.length - i - 1); j++) {
-            if (player_list[j].totalPoints < player_list[j + 1].totalPoints) {
-                let temp = player_list[j];
-                player_list[j] = player_list[j + 1];
-                player_list[j + 1] = temp;
+    try {
+        for (let i = 0; i < player_list.length; i++) {
+            for (let j = 0; j < (player_list.length - i - 1); j++) {
+                if (player_list[j].totalPoints < player_list[j + 1].totalPoints) {
+                    let temp = player_list[j];
+                    player_list[j] = player_list[j + 1];
+                    player_list[j + 1] = temp;
+                }
+            }
+        }
+        for (let i = 0; i < 10; i++) {
+            if (player_list[i]) {
+                leaderboard_list.push(player_list[i]);
             }
         }
     }
-
-    let leaderboard_list = [];
-    for (let i = 0; i < 10; i++) {
-        if (player_list[i]) {
-            leaderboard_list.push(player_list[i]);
-        }
+    catch (Exception) {
+        leaderboard_list[0] = "No players exist!";
     }
 
     if (game_list) {
