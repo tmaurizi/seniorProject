@@ -241,8 +241,6 @@ const madeChoice = async (id,flag=0) => {
             sum = 0;
     }
 
-    
-
     if (flag == 0) {
         document.getElementById('possiblePoints').innerHTML = sum;
         possiblePoints = sum;

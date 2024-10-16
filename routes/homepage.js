@@ -44,16 +44,6 @@ router.post('/create',async(req,res)=>{
     res.redirect('/' + gameid);
 });
 
-// Brings user to their history
-router.get('/history', async (req, res) => {
-    if (req.session.user == undefined) {
-        res.redirect('/');
-        return;
-    }
-    const games = await req.db.findGameByUsername(req.session.user.username);
-    res.render('history', {gamelist: games});
-});
-
 // If the game exists and has less than 2 players then the player can join and be redirected
 router.get('/:gameid', async (req, res) => {
     const game = await req.db.findGameById(req.params.gameid);

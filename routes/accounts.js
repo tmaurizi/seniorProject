@@ -32,6 +32,7 @@ router.get('/logout', async (req, res) => {
 router.get('/signup', async (req, res) => {
     res.render('signup', { hide_login: true });
 });
+
 // Will add the player to the database if passwords match and the username isn't taken
 router.post('/signup', async (req, res) => {
     const email = req.body.email.trim();
@@ -58,6 +59,12 @@ router.post('/signup', async (req, res) => {
         return;
     }
 
+    // Making sure username doesn't have spaces
+    if (username.includes(' ')) {
+        res.render('signup', { hide_login: true, message: 'Can not have spaces in your username!' });
+        return;
+    }
+
     // Making sure someone can't make a second account with the same email
     const account = await req.db.findPlayerByEmail(email);
     if (account) {
@@ -72,6 +79,29 @@ router.post('/signup', async (req, res) => {
     const id = await req.db.createPlayer(email, username, hash);
     req.session.user = await req.db.findPlayerById(id);
     res.redirect('/');
+});
+
+// Brings user to their history
+router.get('/history', async (req, res) => {
+    if (req.session.user == undefined) {
+        res.redirect('/');
+        return;
+    }
+    const games = await req.db.findGameByUsername(req.session.user.username);
+    res.render('history', { gamelist: games });
+});
+
+// Brings user to their friends list page
+router.get('/friends', async (req, res) => {
+    if (req.session.user == undefined) {
+        res.redirect('/');
+        return;
+    }
+
+    let friends = await req.db.findFriendsByPlayerUsername(req.session.user.username);
+    let friend_list = friends.friends.split(' ');
+    console.log(friend_list);
+    res.render('friendList', { friend_list: friend_list, username: req.session.user.username });
 });
 
 module.exports = router;

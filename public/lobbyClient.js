@@ -16,7 +16,6 @@ const onChatSubmitted = async (event) => {
 };
 
 const refreshButton = async () => {
-    console.log('refresh');
     location.reload();
 };
 

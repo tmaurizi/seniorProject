@@ -1,5 +1,18 @@
 extends layout.pug
 
 block content
-	h1 Friend List
+	h1 #{username}'s Friend List
 
+	input.hidden(type='text',id='currentUser',value=user.username,disabled)
+
+	.column3
+		form(type='submit',id='addFriend-form')
+				input(type='text',id='username')
+				button(id='addbtn') Add Friend by Username
+
+	.column3
+		each friend in friend_list
+			li #{friend}
+
+	script(src='/socket.io/socket.io.js')
+	script(src='friendClient.js')

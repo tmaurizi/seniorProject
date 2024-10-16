@@ -13,6 +13,8 @@ html
 				span
 					span Welcome back #{user.username}!							
 					a.button(href = '/logout') Logout
+					a.button.right(href = '/friends') Friend List
+					a.button.right(href='/history') History
 			else
 				a.button(href = '/login') Login
 		button.right(id='instruction', onclick="popup('instructionPopup')") Instructions
@@ -21,5 +23,5 @@ html
 				h1 Instructions
 				p Roll the dice!
 				button(id='closeInstruction', onclick="closePopup('instructionPopup')") Close
-		script(src='functions.js')
+		script(src='gameFunctions.js')
 		block content

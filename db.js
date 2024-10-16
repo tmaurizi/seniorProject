@@ -66,6 +66,7 @@ class DataStore {
             { column: 'email', value: email },
             { column: 'username', value: username },
             { column: 'password', value: password },
+            { column: 'friends', value: '' },
             { column: 'totalPoints', value: '0' }
         ])
         return id;
@@ -131,6 +132,34 @@ class DataStore {
         }
     }
 
+    //FRIEND FUNCTIONS
+    // Finds players friend list
+    async findFriendsByPlayerUsername(username) {
+        const friends = await this.read('Players', [{ column: 'username', value: username }], 'friends');
+        if (friends.length > 0) {
+            return friends[0];
+        }
+        else {
+            return undefined;
+        }
+    }
+
+    // Add single friend's username to player's friend list
+    async addFriendByPlayerUsername(player, friendUsername) {
+        // Gets existing friends
+        const friends = await this.read('Players', [{ column: 'username', value: player }], 'friends');
+        let friendList = friendUsername;
+
+        if (friends.length > 0) {
+            friendList += (' ' + friends[0].friends);
+        }
+
+        const updated = await this.update('Players', [{ column: 'friends', value: friendList }], [{ column: 'username', value: player }]);
+
+        return updated;
+
+    }
+    
     //---------------------------
     // GAME DB
     // Creates game with default values

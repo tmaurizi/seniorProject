@@ -15,6 +15,7 @@ const initialize = async () => {
         { name: 'email', type: 'TEXT' },
         { name: 'username', type: 'TEXT' },
         { name: 'password', type: 'TEXT' },
+        { name: 'friends', type: 'TEXT' },
         { name: 'totalPoints', type: 'INTEGER' }
     ], 'id');
 
@@ -124,6 +125,18 @@ const resetDbForGame = async (gameid, username) => {
     await db.resetGame(gameid, username);
 };
 
+const checkUsername = async (username, currentUser) => {
+    let flag = await db.findPlayerByUsername(username);
+
+    if (flag) {
+        await db.addFriendByPlayerUsername(currentUser, username);
+        return true;
+    }
+    else {
+        return false;
+    }
+};
+
 // Socket functions
 // Reference:
 //      Setting up the socket and getting the initial chat feature - https://www.youtube.com/watch?v=xVcVbCLmKew
@@ -179,7 +192,7 @@ io.on('connection', (sock) => {
     });
 
     // After a choice is made and submitted, the player get's switched and the tables are updated (on screen and database)
-    sock.on('choice', (room) => {
+    sock.on('choice', (data) => {
         var col;
         if (playerToggle == 0) {
             col = 'p1';
@@ -189,13 +202,20 @@ io.on('connection', (sock) => {
             col = 'p2';
             playerToggle = 0;
         }
-        col += room.choice;
-        updateDb(room.gameid, col, room.points);
-        io.in(room.gameid).emit('refresh', col, room.points);
+        col += data.choice;
+        updateDb(data.gameid, col, data.points);
+        io.in(data.gameid).emit('refresh', col, data.points);
     });
 
-    sock.on('finishGame', (room) => {
-        updatePlayerAfterGame(room.gameid, room.p1points, room.p2points);
+    // Updates the database to have the finished game points stored
+    sock.on('finishGame', (data) => {
+        updatePlayerAfterGame(data.gameid, data.p1points, data.p2points);
+    });
+
+    sock.on('testUsername', (data) => {
+        if (checkUsername(data.username, data.current)) {
+            sock.emit('usernameChecked');
+        }
     });
 
 });

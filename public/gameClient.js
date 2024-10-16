@@ -238,7 +238,6 @@ sock.on('returnPlayers', showPlayers);
 
 sock.emit('join', { gameid: gameid, username: username });
 
-
 // Socket event listeners 
 document.getElementById('chat-form').addEventListener('submit', onChatSubmitted);
 document.getElementById('finish-form').addEventListener('submit', onFinishSubmitted);
