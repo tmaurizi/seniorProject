@@ -125,15 +125,29 @@ const resetDbForGame = async (gameid, username) => {
     await db.resetGame(gameid, username);
 };
 
+// Checks friend's username to make sure that it's available to add
 const checkUsername = async (username, currentUser) => {
-    let flag = await db.findPlayerByUsername(username);
+    let exists = await db.findPlayerByUsername(username);
+    let check = await db.checkFriendInList(currentUser, username);
 
-    if (flag) {
+    if (!exists) {
+        return { successful: false, message: 'Friend\'s username does not exist.' };
+    }
+    else if (check) {
+        return { successful: false, message: 'This person is already your friend!' };
+    }
+    else if (username == currentUser) {
+        //return 'You can not add yourself as a friend!';
+        return { successful: false, message: 'You can not add yourself as a friend!' };
+    }
+    else if (exists && !check && username != currentUser) {
         await db.addFriendByPlayerUsername(currentUser, username);
-        return true;
+        //return 'Friend added successfully!';
+        return { successful: true, message: 'Friend added successfully!' };
     }
     else {
-        return false;
+        //return 'Error adding friend.';
+        return { successful: false, message: 'Error adding friend.' };
     }
 };
 
@@ -213,9 +227,10 @@ io.on('connection', (sock) => {
     });
 
     sock.on('testUsername', (data) => {
-        if (checkUsername(data.username, data.current)) {
-            sock.emit('usernameChecked');
-        }
+        //https://stackoverflow.com/questions/45608525/async-await-promise-pending-error
+        checkUsername(data.username, data.current).then(check => {
+            sock.emit('usernameChecked', check);
+        });
     });
 
 });

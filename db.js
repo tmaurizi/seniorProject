@@ -159,6 +159,21 @@ class DataStore {
         return updated;
 
     }
+
+    // Checks if a friend is already in player's friend list
+    async checkFriendInList(player, friendUsername) {
+        const friends = await this.read('Players', [{ column: 'username', value: player }], 'friends');
+
+        let checklist = friends[0].friends.split(' ');
+
+        for (let i = 0; i < checklist.length; i++) {
+            if (checklist[i] == friendUsername) {
+                return 1;
+            }
+        }
+
+        return 0;
+    }
     
     //---------------------------
     // GAME DB

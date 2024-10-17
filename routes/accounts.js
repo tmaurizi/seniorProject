@@ -100,7 +100,6 @@ router.get('/friends', async (req, res) => {
 
     let friends = await req.db.findFriendsByPlayerUsername(req.session.user.username);
     let friend_list = friends.friends.split(' ');
-    console.log(friend_list);
     res.render('friendList', { friend_list: friend_list, username: req.session.user.username });
 });
 
