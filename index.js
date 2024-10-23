@@ -16,6 +16,7 @@ const initialize = async () => {
         { name: 'username', type: 'TEXT' },
         { name: 'password', type: 'TEXT' },
         { name: 'friends', type: 'TEXT' },
+        { name: 'requests', type: 'TEXT' },
         { name: 'totalPoints', type: 'INTEGER' }
     ], 'id');
 
@@ -93,6 +94,7 @@ app.use('/', require('./routes/homepage'));
 const server=http.createServer(app);
 
 const socketio=require('socket.io');
+const { use } = require('./routes/accounts');
 const io=socketio(server);
 
 var playerToggle = 0;
@@ -127,28 +129,42 @@ const resetDbForGame = async (gameid, username) => {
 
 // Checks friend's username to make sure that it's available to add
 const checkUsername = async (username, currentUser) => {
-    let exists = await db.findPlayerByUsername(username);
-    let check = await db.checkFriendInList(currentUser, username);
+    const exists = await db.findPlayerByUsername(username);
+    const alreadyFriend = await db.checkFriendInList(currentUser, username);
+    const alreadyRequested = await db.checkNameInRequestList(username, currentUser);
+    const otherPersonRequested = await db.checkNameInRequestList(currentUser, username);
 
     if (!exists) {
         return { successful: false, message: 'Friend\'s username does not exist.' };
     }
-    else if (check) {
+    else if (alreadyFriend) {
         return { successful: false, message: 'This person is already your friend!' };
     }
     else if (username == currentUser) {
-        //return 'You can not add yourself as a friend!';
         return { successful: false, message: 'You can not add yourself as a friend!' };
     }
-    else if (exists && !check && username != currentUser) {
-        await db.addFriendByPlayerUsername(currentUser, username);
-        //return 'Friend added successfully!';
-        return { successful: true, message: 'Friend added successfully!' };
+    else if (alreadyRequested) {
+        return { successful: false, message: 'You already sent this person a friend request.' };
+    }
+    else if (otherPersonRequested) {
+        return { successful: false, message: 'This person sent you a friend request.' };
+    }
+    else if (exists && !alreadyFriend && username != currentUser && !alreadyRequested && !otherPersonRequested) {
+        await db.friendRequest(currentUser, username);
+        return { successful: true, message: 'Friend request sent successfully!' };
     }
     else {
-        //return 'Error adding friend.';
         return { successful: false, message: 'Error adding friend.' };
     }
+};
+
+// Removes the username from currentUser's friend request list
+const removeFriendRequest = async (username, currentUser) => {
+    await db.removeRequest(currentUser, username);
+};
+
+const addFriendFromRequest = async (username, currentUser) => {
+    await db.addFriendByPlayerUsername(currentUser, username);
 };
 
 // Socket functions
@@ -226,11 +242,23 @@ io.on('connection', (sock) => {
         updatePlayerAfterGame(data.gameid, data.p1points, data.p2points);
     });
 
+    // Tests username from friend request to make sure it's valid and sends information back to client
     sock.on('testUsername', (data) => {
         //https://stackoverflow.com/questions/45608525/async-await-promise-pending-error
         checkUsername(data.username, data.current).then(check => {
             sock.emit('usernameChecked', check);
         });
+    });
+
+    // Resolves the friend request by taking it off the current user's request list
+    sock.on('friendRequestResolved', (data) => {
+        removeFriendRequest(data.username, data.current);
+    });
+
+    // After a friend is accepted it adds the users to each other's friend lists
+    sock.on('friendAccepted', (data) => {        
+        addFriendFromRequest(data.username, data.current);
+        addFriendFromRequest(data.current, data.username);
     });
 
 });

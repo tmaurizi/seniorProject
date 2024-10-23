@@ -1,5 +1,6 @@
 // Database design updated from web application design project
 const assert = require('assert');
+const { request } = require('http');
 const sqlite = require('sqlite-async');
 class DataStore {
     constructor() {
@@ -67,6 +68,7 @@ class DataStore {
             { column: 'username', value: username },
             { column: 'password', value: password },
             { column: 'friends', value: '' },
+            { column: 'requests', value: '' },
             { column: 'totalPoints', value: '0' }
         ])
         return id;
@@ -133,11 +135,22 @@ class DataStore {
     }
 
     //FRIEND FUNCTIONS
-    // Finds players friend list
+    // Finds player's friend list
     async findFriendsByPlayerUsername(username) {
         const friends = await this.read('Players', [{ column: 'username', value: username }], 'friends');
         if (friends.length > 0) {
             return friends[0];
+        }
+        else {
+            return undefined;
+        }
+    }
+
+    // Finds player's friend requests
+    async findRequestsByPlayerUsername(username) {
+        const requests = await this.read('Players', [{ column: 'username', value: username }], 'requests');
+        if (requests.length > 0) {
+            return requests[0];
         }
         else {
             return undefined;
@@ -149,9 +162,12 @@ class DataStore {
         // Gets existing friends
         const friends = await this.read('Players', [{ column: 'username', value: player }], 'friends');
         let friendList = friendUsername;
-
-        if (friends.length > 0) {
+        if (friends.length > 0) { 
             friendList += (' ' + friends[0].friends);
+        }
+
+        if (friendList.substring(friendList.length-1,friendList.length)==' ') {
+            friendList = friendList.substring(0, friendList.length - 1);
         }
 
         const updated = await this.update('Players', [{ column: 'friends', value: friendList }], [{ column: 'username', value: player }]);
@@ -174,7 +190,54 @@ class DataStore {
 
         return 0;
     }
-    
+
+    // Sends friend request to friend from player
+    async friendRequest(player, friend) {
+        const requests = await this.read('Players', [{ column: 'username', value: friend }], 'requests');
+
+        let friendRequest = player;
+        if (requests.length > 0) {
+            friendRequest += (' ' + requests[0].requests);
+        }
+
+        if (friendRequest.substring(friendRequest.length - 1, friendRequest.length) == ' ') {
+            friendRequest = friendRequest.substring(0, friendRequest.length - 1);
+        }
+
+        const updated = await this.update('Players', [{ column: 'requests', value: friendRequest }], [{ column: 'username', value: friend }]);
+
+        return updated;
+    }
+
+    async removeRequest(player, requestUsername) {
+        const requests = await this.read('Players', [{ column: 'username', value: player }], 'requests');
+        let request_list = requests[0].requests.split(' ');
+
+        // https://stackoverflow.com/questions/5767325/how-can-i-remove-a-specific-item-from-an-array-in-javascript#:~:text=Find%20the%20index%20of%20the,and%2For%20adding%20new%20elements.&text=The%20second%20parameter%20of%20splice%20is%20the%20number%20of%20elements%20to%20remove.
+        const index = request_list.indexOf(requestUsername);
+        if (index > -1) {
+            request_list.splice(index, 1);
+        }
+
+        if (request_list.length == 0) { 
+            request_list = '';
+        }
+        const updated = await this.update('Players', [{ column: 'requests', value: request_list }], [{ column: 'username', value: player }]);
+        return updated;
+    }
+
+    async checkNameInRequestList(player, otherUsername) {
+        const requests = await this.read('Players', [{ column: 'username', value: player }], 'requests');
+
+        const index = requests[0].requests.indexOf(otherUsername);
+        if (index != -1) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     //---------------------------
     // GAME DB
     // Creates game with default values

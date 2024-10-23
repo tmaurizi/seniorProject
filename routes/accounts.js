@@ -98,9 +98,23 @@ router.get('/friends', async (req, res) => {
         return;
     }
 
-    let friends = await req.db.findFriendsByPlayerUsername(req.session.user.username);
-    let friend_list = friends.friends.split(' ');
-    res.render('friendList', { friend_list: friend_list, username: req.session.user.username });
+    const friends = await req.db.findFriendsByPlayerUsername(req.session.user.username);
+    // Checks if friends are empty
+    let friendFlag = false;
+    if (friends.friends == '') {
+        friendFlag = true;
+    }
+    const friend_list = friends.friends.split(' ');
+
+    const requests = await req.db.findRequestsByPlayerUsername(req.session.user.username);
+    // Checks if friend requests are empty
+    let requestFlag = false;
+    if (requests.requests == '') {
+        requestFlag = true;
+    }
+    const request_list = requests.requests.split(' ');
+
+    res.render('friendList', { friend_list: friend_list, request_list: request_list, requestFlag: requestFlag, friendFlag: friendFlag, username: req.session.user.username });
 });
 
 module.exports = router;

@@ -3,7 +3,7 @@ extends layout.pug
 block content
 	h1 #{username}'s Friend List
 
-	input.hidden(type='text',id='currentUser',value=user.username,disabled)
+	input.hidden(type='text',id='currentUser',value=username,disabled)
 
 	.column3
 		div(id='message')
@@ -12,9 +12,27 @@ block content
 				button(id='addbtn') Add Friend by Username
 
 	.column3
-		each friend in friend_list
-			li #{friend}
-		div(id='addFriendToList')
+		h3 Friends!
+		if friendFlag
+			div(id='friendFlagMsg') No friends!
+		else
+			each friend in friend_list
+				li #{friend}
+			div(id='addFriendToList')
+
+	.column3
+		h3 Friend Requests!
+		if requestFlag
+			div(id='requestFlagMsg') No friend requests!
+		else
+			table 
+				tbody
+				each request in request_list
+					tr
+						td #{request}
+						td: button(id='acceptbtn', onclick='acceptFriend("'+request+'")') Accept
+						td: button(id='denybtn', onclick='denyFriend("'+request+'")') Deny
+			
 
 	script(src='/socket.io/socket.io.js')
 	script(src='friendClient.js')
