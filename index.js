@@ -163,9 +163,15 @@ const removeFriendRequest = async (username, currentUser) => {
     await db.removeRequest(currentUser, username);
 };
 
+// Adds the username to currentUser's friend request list
 const addFriendFromRequest = async (username, currentUser) => {
     await db.addFriendByPlayerUsername(currentUser, username);
 };
+
+const removeFriendFromList = async (username, currentUser) => {
+    await db.removeFriendByPlayerUsername(currentUser, username);
+    await db.removeFriendByPlayerUsername(username, currentUser);
+}
 
 // Socket functions
 // Reference:
@@ -261,6 +267,9 @@ io.on('connection', (sock) => {
         addFriendFromRequest(data.current, data.username);
     });
 
+    sock.on('removeFriendFromList', (data) => {
+        removeFriendFromList(data.username, data.current);
+    });
 });
 
 server.listen(8080, () => {

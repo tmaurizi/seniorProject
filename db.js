@@ -173,12 +173,36 @@ class DataStore {
         const updated = await this.update('Players', [{ column: 'friends', value: friendList }], [{ column: 'username', value: player }]);
 
         return updated;
+    }
 
+    // Removes friend from player's friend list
+    async removeFriendByPlayerUsername(player, friendUsername) {
+        const friends = await this.read('Players', [{ column: 'username', value: player }], 'friends');
+
+        if (friends.length == 0) {
+            return;
+        }
+        let friend_list = friends[0].friends.split(' ');
+
+        const index = friend_list.indexOf(friendUsername);
+        if (index > -1) {
+            friend_list.splice(index, 1);
+        }
+
+        if (friend_list.length == 0) {
+            friend_list = '';
+        }
+
+        const updated = await this.update('Players', [{ column: 'friends', value: friend_list }], [{ column: 'username', value: player }]);
+        return updated;
     }
 
     // Checks if a friend is already in player's friend list
     async checkFriendInList(player, friendUsername) {
         const friends = await this.read('Players', [{ column: 'username', value: player }], 'friends');
+        if (friends.length == 0) {
+            return;
+        }
 
         let checklist = friends[0].friends.split(' ');
 
@@ -209,8 +233,12 @@ class DataStore {
         return updated;
     }
 
+    // Removes the requestUsername from the player's request list
     async removeRequest(player, requestUsername) {
         const requests = await this.read('Players', [{ column: 'username', value: player }], 'requests');
+        if (requests.length == 0) {
+            return;
+        }
         let request_list = requests[0].requests.split(' ');
 
         // https://stackoverflow.com/questions/5767325/how-can-i-remove-a-specific-item-from-an-array-in-javascript#:~:text=Find%20the%20index%20of%20the,and%2For%20adding%20new%20elements.&text=The%20second%20parameter%20of%20splice%20is%20the%20number%20of%20elements%20to%20remove.
@@ -226,8 +254,12 @@ class DataStore {
         return updated;
     }
 
+    // Checks if otherUsername is in player's request list
     async checkNameInRequestList(player, otherUsername) {
         const requests = await this.read('Players', [{ column: 'username', value: player }], 'requests');
+        if (requests.length == 0) { 
+            return false;
+        }
 
         const index = requests[0].requests.indexOf(otherUsername);
         if (index != -1) {

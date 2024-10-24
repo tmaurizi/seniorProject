@@ -16,9 +16,12 @@ block content
 		if friendFlag
 			div(id='friendFlagMsg') No friends!
 		else
-			each friend in friend_list
-				li #{friend}
-			div(id='addFriendToList')
+			table 
+				tbody
+				each friend in friend_list
+					tr
+						td #{friend}
+						td: button(id='acceptbtn', onclick='removeFriend("'+friend+'")') Remove
 
 	.column3
 		h3 Friend Requests!
