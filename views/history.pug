@@ -1,8 +1,10 @@
 extends layout.pug
 
 block content
+	br
+	br
+	button(onclick='back()') Back
 	h1 History
-	a.button(href='/') Back
 
 	table 
 		thead 
@@ -16,3 +18,5 @@ block content
 				td #{game[0]}
 				td #{game[1]}
 				td #{game[2]}
+
+	script(src='navigation.js')

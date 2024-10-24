@@ -182,13 +182,14 @@ io.on('connection', (sock) => {
     console.log('Someone connected');
     sock.emit('message', 'You are connected.');
 
-    sock.on('lobbyMsg', (text) => {
-        io.in(0).emit('lobbyMsg', text.text);
+    // Allows message to be sent to all players in the lobby
+    sock.on('lobbyMsg', (data) => {
+        io.in(0).emit('lobbyMsg', [data.text, data.username]);
     });
 
     // Allows messages to be sent to other players if they are in the same room
-    sock.on('message', (room) => { 
-        io.in(room.gameid).emit('message', room.text);
+    sock.on('message', (data) => { 
+        io.in(data.gameid).emit('message', [data.text, data.username]);
     });
 
     // Lets players join rooms
@@ -267,6 +268,7 @@ io.on('connection', (sock) => {
         addFriendFromRequest(data.current, data.username);
     });
 
+    // Removes a friend from current's friend list
     sock.on('removeFriendFromList', (data) => {
         removeFriendFromList(data.username, data.current);
     });

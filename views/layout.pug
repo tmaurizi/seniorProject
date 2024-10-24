@@ -12,11 +12,9 @@ html
 			if user
 				span
 					span Welcome back #{user.username}!							
-					a.button(href = '/logout') Logout
-					a.button.right(href = '/friends') Friend List
-					a.button.right(href='/history') History
+					button(onclick='logout()') Logout
 			else
-				a.button(href = '/login') Login
+				button(onclick='login()') Login
 		button.right(id='instruction', onclick="popup('instructionPopup')") Instructions
 		div.popup(id='instructionPopup')
 			.popup-content.bordered
@@ -24,4 +22,5 @@ html
 				p Roll the dice!
 				button(id='closeInstruction', onclick="closePopup('instructionPopup')") Close
 		script(src='gameFunctions.js')
+		script(src='navigation.js')
 		block content

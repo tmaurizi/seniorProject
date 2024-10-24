@@ -17,6 +17,10 @@ button {
     cursor: pointer;
 }
 
+button:active {
+    box-shadow: inset 0px 5px 5px darkgrey;
+}
+
 hr {
     border: 0.1rem dotted;
 }
@@ -119,7 +123,7 @@ input[type=email] {
 
 /*https://stackoverflow.com/questions/21227287/make-div-scrollable*/
 .textbox {
-    width: 15rem;
+    width: 30rem;
     height: 13rem;
     overflow-y: auto;
     float: left;
@@ -131,4 +135,11 @@ input[type=email] {
     border: 0.1rem solid;
     border-radius: 1rem;
     border-color: black;
+    width: 20rem;
+    padding: 0 1rem 1rem 1rem;
+}
+
+.errormsg {
+    color: darkred;
+    font-weight: bold;
 }

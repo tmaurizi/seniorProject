@@ -72,6 +72,12 @@ router.post('/signup', async (req, res) => {
         return;
     }
 
+    // Makes sure everything was filled in
+    if (email == '' || username == '' || password1 == '' || password2 == '') {
+        res.render('signup', { hide_login: true, message: 'One of the fields were empty.' });
+        return;
+    }
+
     // Hashes password to be added to database
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password1, salt);

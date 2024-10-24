@@ -1,9 +1,9 @@
 const sock = io();
 
-const writeMessage = async (text) => {
+const writeMessage = async (data) => {
     const parent = document.getElementById('lobbyChatHistory');
     const el = document.createElement('li');
-    el.innerHTML = text;
+    el.innerHTML = data[1] + ' - ' + data[0];
     parent.appendChild(el);
 };
 
@@ -12,12 +12,14 @@ const onChatSubmitted = async (event) => {
     const input = document.getElementById('chat');
     const text = input.value;
     input.value = '';
-    sock.emit('lobbyMsg', { text: text });
+    sock.emit('lobbyMsg', { text: text, username: username });
 };
 
 const refreshButton = async () => {
     location.reload();
 };
+
+const username = document.getElementById('username').value;
 
 sock.on('lobbyMsg', writeMessage);
 

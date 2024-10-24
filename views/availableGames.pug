@@ -3,9 +3,17 @@ extends layout.pug
 //- Page that has all the available games to choose from, as well as being able to create games
 
 block content
+	if user
+		button.right(onclick='friendList()') Friend List
+		button.right(onclick='history()') History
 	h1 Available Games!
 
-	.column2
+	if user
+		input.hidden(type='text',id='username',value=user.username,disabled)
+	else
+		input.hidden(type='text',id='username',value='Guest',disabled)
+
+	.column3
 		button(id='refreshbtn', onclick='refreshButton()') Refresh page!
 		br
 		br
@@ -17,22 +25,23 @@ block content
 			if game.playeramt<2
 				li: a(href="/"+game.gameid) #{game.gameid}
 	
-	.column2
-		h3 Leaderboard!
-		ol
-			each leader in leaderboard_list
-				li #{leader.totalPoints} ~ #{leader.username}
+	.column3
+		.box
+			h3 Leaderboard
+			ol
+				each leader in leaderboard_list
+					li #{leader.totalPoints} ~ #{leader.username}
 	
-		p ----------------------------------------------
-		h3 Chatbox
-		div.textbox
-			div(id='lobbyChatHistory')
+	.column3
+		.box
+			h3 Chatbox
+			div.textbox(id='lobbyChatHistory')
 			
-			br
 			form(type='submit',id='chat-form')
 				input(type='text',id='chat')
 				button(id='say') Say
 
 	script(src='/socket.io/socket.io.js')
 	script(src='lobbyClient.js')
+	script(src='navigation.js')
 		

@@ -100,10 +100,15 @@ const resetPage = async () => {
 }
 
 // Adds message to chat history, displaying it to all users in the room
-const writeMessage = async (text) => {    
-    const parent = document.getElementById('chatHistory'+gameid);
+const writeMessage = async (data) => {    
+    const parent = document.getElementById('chatHistory' + gameid);
     const el = document.createElement('li');
-    el.innerHTML = text;
+    if (data[0].length > 1) {
+        el.innerHTML = data[1] + ' - ' + data[0];
+    }
+    else {
+        el.innerHTML = data;
+    }
     parent.appendChild(el);
 };
 
@@ -158,7 +163,7 @@ const onChatSubmitted = async (event) => {
     const input = document.getElementById('chat');
     const text = input.value;
     input.value = '';
-    sock.emit('message', { gameid: gameid, text: text });
+    sock.emit('message', { gameid: gameid, text: text, username: username });
 };
 
 // After the finish turn is submitted then takes the player's choice sends it through socket

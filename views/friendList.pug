@@ -1,12 +1,15 @@
 extends layout.pug
 
 block content
+	br
+	br
+	button(onclick='back()') Back
 	h1 #{username}'s Friend List
 
 	input.hidden(type='text',id='currentUser',value=username,disabled)
 
 	.column3
-		div(id='message')
+		div.errormsg(id='message')
 		form(type='submit',id='addFriend-form')
 				input(type='text',id='username')
 				button(id='addbtn') Add Friend by Username
@@ -39,3 +42,4 @@ block content
 
 	script(src='/socket.io/socket.io.js')
 	script(src='friendClient.js')
+	script(src='navigation.js')
