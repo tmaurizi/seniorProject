@@ -139,14 +139,14 @@ block content
 				p(id='hintParagraph')
 				button(id='closeHint', onclick="closePopup('hintPopup')") Close
 
-		h3 Chatbox
-		div.textbox
-			div(id='chatHistory'+game.gameid)
-
-			br
-			form(type='submit',id='chat-form')
-				input(type='text',id='chat')
-				button(id='say') Say
+		.box
+			h3 Chatbox
+			div.textbox
+				div(id='chatHistory'+game.gameid)
+				
+				form(type='submit',id='chat-form')
+					input(type='text',id='chat')
+					button(id='say') Say
 
 	//- Script sources
 	script(src='/socket.io/socket.io.js')

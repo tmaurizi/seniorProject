@@ -21,6 +21,16 @@ button:active {
     box-shadow: inset 0px 5px 5px darkgrey;
 }
 
+h1 {
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.25rem;
+    text-align: center;
+}
+
 hr {
     border: 0.1rem dotted;
 }
@@ -29,6 +39,8 @@ input[type=text] {
     border-radius: 1rem;
     border: 0.15rem solid;
     padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+    max-width: 80%;
+    min-width: 70%;
 }
 
 input[type=password] {
@@ -65,7 +77,17 @@ input[type=email] {
 .center {
     margin-left: auto;
     margin-right: auto;
+}
+
+.centerText {
     text-align: center;
+}
+
+/*https://www.shecodes.io/athena/12186-how-to-center-a-button-using-css*/
+.centerButton {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 /*https://www.geeksforgeeks.org/how-to-create-popup-box-using-html-and-css/*/
@@ -123,8 +145,18 @@ input[type=email] {
 
 /*https://stackoverflow.com/questions/21227287/make-div-scrollable*/
 .textbox {
-    width: 30rem;
-    height: 13rem;
+    min-width: 100%;
+    height: 12rem;
+    overflow-y: auto;
+    float: left;
+    position: relative;
+    margin-left: -5px;
+}
+
+.availableGamesBox {
+    max-width: 80%;
+    min-width: 70%;
+    height: 12rem;
     overflow-y: auto;
     float: left;
     position: relative;
@@ -135,8 +167,9 @@ input[type=email] {
     border: 0.1rem solid;
     border-radius: 1rem;
     border-color: black;
-    width: 20rem;
-    padding: 0 1rem 1rem 1rem;
+    max-width: 85%;
+    min-width: 85%;
+    padding: 1rem 1rem 1rem 1rem;
 }
 
 .errormsg {

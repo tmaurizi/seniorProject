@@ -6,40 +6,51 @@ block content
 	if user
 		button.right(onclick='friendList()') Friend List
 		button.right(onclick='history()') History
-	h1 Available Games!
+	h1 Lobby
+	button.centerButton(id='refreshbtn', onclick='refreshButton()') Refresh page to see new games!
+	br
+	hr
 
 	if user
 		input.hidden(type='text',id='username',value=user.username,disabled)
 	else
 		input.hidden(type='text',id='username',value='Guest',disabled)
-
-	.column3
-		button(id='refreshbtn', onclick='refreshButton()') Refresh page!
-		br
-		br
-		form(action='/create',method='post')
-			div 
-				button(id='createbtn', onclick='createGame') Create a new game!
-
-		each game in game_list
-			if game.playeramt<2
-				li: a(href="/"+game.gameid) #{game.gameid}
 	
 	.column3
-		.box
-			h3 Leaderboard
-			ol
-				each leader in leaderboard_list
-					li #{leader.totalPoints} ~ #{leader.username}
-	
-	.column3
-		.box
-			h3 Chatbox
+		.box.center
+			h2 Chatbox
 			div.textbox(id='lobbyChatHistory')
 			
 			form(type='submit',id='chat-form')
 				input(type='text',id='chat')
 				button(id='say') Say
+
+	.column3
+		.box.center
+			h2 Available Games List
+			div.availableGamesBox
+				each game in game_list
+					if game.playeramt<2
+						li: a(href="/"+game.gameid) #{game.gameid}
+			form(action='/create',method='post') 
+				button(id='createbtn', onclick='createGame') Create a new game!
+
+	.column3
+		.box.center
+			h2 Leaderboard
+				table.center
+					thead
+						tr.bordered
+							th Place
+							th Username
+							th Points Earned
+					tbody
+					each leader, index in leaderboard_list
+						tr
+							td #{index+1}
+							td #{leader.username}
+							td #{leader.totalPoints}
+
 
 	script(src='/socket.io/socket.io.js')
 	script(src='lobbyClient.js')

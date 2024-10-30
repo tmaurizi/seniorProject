@@ -3,7 +3,7 @@ const sock = io();
 const writeMessage = async (data) => {
     const parent = document.getElementById('lobbyChatHistory');
     const el = document.createElement('li');
-    el.innerHTML = data[1] + ' - ' + data[0];
+    el.innerHTML = data[1] + ' ~ ' + data[0];
     parent.appendChild(el);
 };
 

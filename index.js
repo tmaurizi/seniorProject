@@ -179,7 +179,6 @@ const removeFriendFromList = async (username, currentUser) => {
 //      Sending message to specific player - https://stackoverflow.com/questions/57735827/socket-io-emitting-to-all-users-despite-toroom
 //      Setting up rooms and having players join them - https://stackoverflow.com/questions/32882891/how-to-get-event-details-in-middleware-for-socket-io
 io.on('connection', (sock) => { 
-    console.log('Someone connected');
     sock.emit('message', 'You are connected.');
 
     // Allows message to be sent to all players in the lobby
@@ -194,7 +193,6 @@ io.on('connection', (sock) => {
 
     // Lets players join rooms
     sock.on('join', (room) => { 
-        console.log('Joining room ' + room.gameid);
         if (room.gameid != 0) {
             let username = room.username;
             if (room.username == undefined) {
