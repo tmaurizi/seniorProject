@@ -57,10 +57,10 @@ const removeFriend = async (username) => {
 const acceptFriend = async (username) => {
     // Takes username off request list in the database
     sock.emit('friendRequestResolved', { username: username, current: currentUser });
-    // Reloads page for user so the username is gone from friend request list
-    location.reload();
     // Adds friend to the username's friend list and to the current user's friend list
     sock.emit('friendAccepted', { username: username, current: currentUser });
+    // Reloads page for user so the username is gone from friend request list
+    location.reload();
 };
 
 // *******************************************************************
@@ -76,9 +76,18 @@ const denyFriend = async (username) => {
     location.reload();
 };
 
+// *******************************************************************
+// Name: Refresh Page
+// Purpose: Reloads the page for the user
+// *******************************************************************
+const refreshPage = async () => {
+    location.reload();
+};
+
 // <*> LISTENERS <*>
 // Socket event listeners
 sock.on('usernameChecked', displayUsernameChecked);
+sock.on('reload', refreshPage);
 
 // Form submission listeners
 document.getElementById('addFriend-form').addEventListener('submit', onAddFriendSubmitted);

@@ -99,11 +99,6 @@ const io=socketio(server);
 
 var playerToggle = 0;
 
-// A function to update the database from the socket functions that is async to allow 'await'
-const updateDb = async (gameid, column, sum) => { 
-    await db.updateTableById(gameid, column, sum);
-};
-
 // After a game is finished it updates the gatabase with the player's info
 const updatePlayerAfterGame = async (gameid, p1total, p2total) => { 
     const p1username = await db.findPlayer1FromGameid(gameid);
@@ -120,11 +115,6 @@ const findPlayersFromDb = async (gameid) => {
     const p2username = await db.findPlayer2FromGameid(gameid);
 
     return [p1username, p2username];
-};
-
-// If a player leaves, the game is reset to have all 0 values for both players
-const resetDbForGame = async (gameid, username) => { 
-    await db.resetGame(gameid, username);
 };
 
 // Checks friend's username to make sure that it's available to add
@@ -158,21 +148,6 @@ const checkUsername = async (username, currentUser) => {
     }
 };
 
-// Removes the username from currentUser's friend request list
-const removeFriendRequest = async (username, currentUser) => {
-    await db.removeRequest(currentUser, username);
-};
-
-// Adds the username to currentUser's friend request list
-const addFriendFromRequest = async (username, currentUser) => {
-    await db.addFriendByPlayerUsername(currentUser, username);
-};
-
-const removeFriendFromList = async (username, currentUser) => {
-    await db.removeFriendByPlayerUsername(currentUser, username);
-    await db.removeFriendByPlayerUsername(username, currentUser);
-}
-
 // Socket functions
 // Reference:
 //      Setting up the socket and getting the initial chat feature - https://www.youtube.com/watch?v=xVcVbCLmKew
@@ -204,16 +179,15 @@ io.on('connection', (sock) => {
     });
 
     // If a player leaves the game
-    sock.on('left', (room) => {
+    sock.on('left', async (room) => {
         sock.join(0);
-        resetDbForGame(room.gameid, room.username);
+        await db.resetGame(room.gameid, room.username);
         io.in(room.gameid).emit('reset');
     });
 
     // Gets the players from the database and passes them back to the client code
     sock.on('players', async (room) => {
         let playerList = await findPlayersFromDb(room.gameid);
-        //sock.emit('returnPlayers', playerList);
         io.in(room.gameid).emit('returnPlayers', playerList);
     });
 
@@ -228,7 +202,7 @@ io.on('connection', (sock) => {
     });
 
     // After a choice is made and submitted, the player get's switched and the tables are updated (on screen and database)
-    sock.on('choice', (data) => {
+    sock.on('choice', async (data) => {
         var col;
         if (playerToggle == 0) {
             col = 'p1';
@@ -239,37 +213,37 @@ io.on('connection', (sock) => {
             playerToggle = 0;
         }
         col += data.choice;
-        updateDb(data.gameid, col, data.points);
+        await db.updateTableById(data.gameid, col, data.points);
         io.in(data.gameid).emit('refresh', col, data.points);
     });
 
     // Updates the database to have the finished game points stored
-    sock.on('finishGame', (data) => {
-        updatePlayerAfterGame(data.gameid, data.p1points, data.p2points);
+    sock.on('finishGame', async (data) => {
+        await updatePlayerAfterGame(data.gameid, data.p1points, data.p2points);
     });
 
     // Tests username from friend request to make sure it's valid and sends information back to client
-    sock.on('testUsername', (data) => {
-        //https://stackoverflow.com/questions/45608525/async-await-promise-pending-error
-        checkUsername(data.username, data.current).then(check => {
-            sock.emit('usernameChecked', check);
-        });
+    sock.on('testUsername', async (data) => {
+        let check = await checkUsername(data.username, data.current);
+        sock.emit('usernameChecked', check);
     });
 
     // Resolves the friend request by taking it off the current user's request list
-    sock.on('friendRequestResolved', (data) => {
-        removeFriendRequest(data.username, data.current);
+    sock.on('friendRequestResolved', async (data) => {
+        await db.removeRequest(data.current, data.username);
     });
 
     // After a friend is accepted it adds the users to each other's friend lists
-    sock.on('friendAccepted', (data) => {        
-        addFriendFromRequest(data.username, data.current);
-        addFriendFromRequest(data.current, data.username);
+    sock.on('friendAccepted', async (data) => {        
+        await db.addFriendByPlayerUsername(data.username, data.current);
+        await db.addFriendByPlayerUsername(data.current, data.username);
+        sock.emit('reload');
     });
 
     // Removes a friend from current's friend list
-    sock.on('removeFriendFromList', (data) => {
-        removeFriendFromList(data.username, data.current);
+    sock.on('removeFriendFromList', async (data) => {
+        await db.removeFriendByPlayerUsername(data.current, data.username);
+        await db.removeFriendByPlayerUsername(data.username, data.current);
     });
 });
 
