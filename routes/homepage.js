@@ -31,7 +31,7 @@ router.get('/', async (req, res) => {
     }
 
     if (game_list) {
-        res.render('availableGames', { game_list: game_list, leaderboard_list: leaderboard_list });
+        res.render('lobby', { game_list: game_list, leaderboard_list: leaderboard_list });
     }
     else {
         res.render('home', { message: 'Please create a game!' });

@@ -211,9 +211,10 @@ io.on('connection', (sock) => {
     });
 
     // Gets the players from the database and passes them back to the client code
-    sock.on('players', (room) => {
-        let playerList = findPlayersFromDb(room.gameid);
-        sock.emit('returnPlayers', playerList);
+    sock.on('players', async (room) => {
+        let playerList = await findPlayersFromDb(room.gameid);
+        //sock.emit('returnPlayers', playerList);
+        io.in(room.gameid).emit('returnPlayers', playerList);
     });
 
     // After player is finished with their turn they are on 'rest'
