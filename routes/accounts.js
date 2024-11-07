@@ -1,40 +1,66 @@
+// *******************************************************************
+// ACCOUNTS
+// Handles account related routers
+// *******************************************************************
+
+// <*> MEMBERS <*>
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 
-// Renders the login page
+// *******************************************************************
+// Name: GET Log in
+// Purpose: Renders the login page
+// *******************************************************************
 router.get('/login', async (req, res) => {
     res.render('login', { hide_login: true });
 });
-// After player hits submit, checks that the player exists and the password matches the database and then they will be logged in 
+// *******************************************************************
+// Name: POST Log in
+// Purpose: Checks that the player exists and then logs them in as session user
 router.post('/login', async (req, res) => {
+    // Gets the inputted email
     const email = req.body.email.trim();
+    // Gets the inputted passwords
     const password = req.body.password.trim();
+    // Gets the player's information if they exist
     const player = await req.db.findPlayerByEmail(email);
+
+    // If the player exists and the passwords match then set the session user to the player and redirect them to the lobby
     if (player && bcrypt.compareSync(password, player.password)) {
         req.session.user = player;
         res.redirect('/');
         return;
     }
+    // If the player doesn't exist, re-render login page and return an error message
     else {
         res.render('login', { hide_login: true, message: 'Incorrect login' });
         return;
     }
 });
 
-// Logs player out and then brings them back to the homepage
+// *******************************************************************
+// Name: GET Log Out
+// Purpose: Logs player out and then brings them back to the homepage
+// *******************************************************************
 router.get('/logout', async (req, res) => {
     req.session.user = undefined;
     res.redirect('/');
 });
 
-// Renders signup page
+// *******************************************************************
+// Name: GET Sign Up
+// Purpose: Renders signup page
+// *******************************************************************
 router.get('/signup', async (req, res) => {
     res.render('signup', { hide_login: true });
 });
-
-// Will add the player to the database if passwords match and the username isn't taken
+// *******************************************************************
+// Name: POST Sign Up
+// Purpose: Add player to database if everything is valid
+// *******************************************************************
 router.post('/signup', async (req, res) => {
+    // Gets the input values from signup page
     const email = req.body.email.trim();
     let username = req.body.username.trim();
     const password1 = req.body.password1.trim();
@@ -82,44 +108,61 @@ router.post('/signup', async (req, res) => {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password1, salt);
 
+    // Creates the player
     const id = await req.db.createPlayer(email, username, hash);
+    // Sets the session user to the new user
     req.session.user = await req.db.findPlayerById(id);
+    // Brings user back to lobby
     res.redirect('/');
 });
 
-// Brings user to their history
+// *******************************************************************
+// Name: GET History
+// Purpose: Brings user to their history
+// *******************************************************************
 router.get('/history', async (req, res) => {
+    // If the user is not logged in, it redirects them to the lobby
     if (req.session.user == undefined) {
         res.redirect('/');
         return;
     }
+    // Gets their games and then renders history page
     const games = await req.db.findGameByUsername(req.session.user.username);
     res.render('history', { gamelist: games });
 });
 
-// Brings user to their friends list page
+// *******************************************************************
+// Name: GET Friends
+// Purpose: Brings user to their friends list page
+// *******************************************************************
 router.get('/friends', async (req, res) => {
+    // If the user is not logged in, it redirects them to the lobby
     if (req.session.user == undefined) {
         res.redirect('/');
         return;
     }
 
+    // Gets friends
     const friends = await req.db.findFriendsByPlayerUsername(req.session.user.username);
     // Checks if friends are empty
     let friendFlag = false;
     if (friends.friends == '') {
         friendFlag = true;
     }
+    // Creates a readable list by splitting each friend into an array
     const friend_list = friends.friends.split(' ');
 
+    // Gets requests
     const requests = await req.db.findRequestsByPlayerUsername(req.session.user.username);
     // Checks if friend requests are empty
     let requestFlag = false;
     if (requests.requests == '') {
         requestFlag = true;
     }
+    // Creates a readable list by splitting each request username into an array
     const request_list = requests.requests.split(' ');
 
+    // Renders friendList page with the friend_list, request_list, and each flag if they are empty
     res.render('friendList', { friend_list: friend_list, request_list: request_list, requestFlag: requestFlag, friendFlag: friendFlag, username: req.session.user.username });
 });
 
