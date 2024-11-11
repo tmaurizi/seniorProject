@@ -1,3 +1,10 @@
+// *******************************************************************
+// INDEX
+// The main program that starts the game and runs the game
+// Reference from web application design final project
+// *******************************************************************
+
+// <*> MEMBERS <*>
 const express = require('express');
 const session = require('express-session');
 const http=require('http');
@@ -6,10 +13,16 @@ require('dotenv').config();
 const Database = require('./db.js');
 const db = new Database();
 
-// Creates tables if they do not exist and connects to database
+var playerToggle = 0;
+
+// *******************************************************************
+// Name: Initialize
+// Purpose: Creates tables if they do not exist and connects to database
+// *******************************************************************
 const initialize = async () => {
     await db.connect();
 
+    // Creates Players table
     await db.schema('Players', [
         { name: 'id', type: 'INTEGER' },
         { name: 'email', type: 'TEXT' },
@@ -20,6 +33,7 @@ const initialize = async () => {
         { name: 'totalPoints', type: 'INTEGER' }
     ], 'id');
 
+    // Creates Games table
     await db.schema('Games', [
         { name: 'gameid', type: 'INTEGER' },
         { name: 'playeramt', type: 'INTEGER' },
@@ -54,12 +68,13 @@ const initialize = async () => {
     ], 'gameid');
 };
 
-// Rewritten from senior project 
 initialize();
+
+// <*> EXPRESS <*>
+// Creates the application
 const app = express();
 app.locals.pretty = true;
 app.use(express.urlencoded({ extended: true }));
-
 app.use((req, res, next) =>
 {
     req.db = db;
@@ -93,22 +108,35 @@ app.use('/', require('./routes/homepage'));
 
 const server=http.createServer(app);
 
+// Connects to socket
 const socketio=require('socket.io');
 const io=socketio(server);
 
-var playerToggle = 0;
+// <*> DATABASE ACCESS FUNCTIONS <*>
 
-// After a game is finished it updates the gatabase with the player's info
+// *******************************************************************
+// Name: Update Player After Game
+// Purpose: After a game is finished it updates the gatabase with the player's info
+// Parameters:
+//      gameid - the game's id
+//      p1total - player 1's total points
+//      p2total - player 2's total points
+// *******************************************************************
 const updatePlayerAfterGame = async (gameid, p1total, p2total) => { 
     const p1username = await db.findPlayer1FromGameid(gameid);
     const p2username = await db.findPlayer2FromGameid(gameid);
 
     await db.updatePlayerPoints(p1username, p1total);
     await db.updatePlayerPoints(p2username, p2total);
-
 };
 
-// Finds the players that are in the database for a game using gameid
+// *******************************************************************
+// Name: Find Players From Database
+// Purpose: Finds the players that are in the database for a game using gameid
+// Parameters:
+//      gameid - the game's id
+// Return: returns an array of player 1 and player 2's usernames
+// *******************************************************************
 const findPlayersFromDb = async (gameid) => {
     const p1username = await db.findPlayer1FromGameid(gameid);
     const p2username = await db.findPlayer2FromGameid(gameid);
@@ -116,13 +144,22 @@ const findPlayersFromDb = async (gameid) => {
     return [p1username, p2username];
 };
 
-// Checks friend's username to make sure that it's available to add
+// *******************************************************************
+// Name: Check Username
+// Purpose: Checks friend's username to make sure that it's available to add
+// Parameters:
+//      username - the friend's username
+//      currentUser - the current player's username
+// Return: Whether adding the friend was successful or not and a message to accompany
+// *******************************************************************
 const checkUsername = async (username, currentUser) => {
+    // Performs the checks through the database
     const exists = await db.findPlayerByUsername(username);
     const alreadyFriend = await db.checkFriendInList(currentUser, username);
     const alreadyRequested = await db.checkNameInRequestList(username, currentUser);
     const otherPersonRequested = await db.checkNameInRequestList(currentUser, username);
 
+    // Checks each flag and returns the successful flag and the message 
     if (!exists) {
         return { successful: false, message: 'Friend\'s username does not exist.' };
     }
@@ -139,6 +176,7 @@ const checkUsername = async (username, currentUser) => {
         return { successful: false, message: 'This person sent you a friend request.' };
     }
     else if (exists && !alreadyFriend && username != currentUser && !alreadyRequested && !otherPersonRequested) {
+        // Sends the friend request
         await db.friendRequest(currentUser, username);
         return { successful: true, message: 'Friend request sent successfully!' };
     }
@@ -147,8 +185,8 @@ const checkUsername = async (username, currentUser) => {
     }
 };
 
-// Socket functions
-// Reference:
+// <*> SOCKET FUNCTIONS <*>
+// References:
 //      Setting up the socket and getting the initial chat feature - https://www.youtube.com/watch?v=xVcVbCLmKew
 //      Sending message to specific player - https://stackoverflow.com/questions/57735827/socket-io-emitting-to-all-users-despite-toroom
 //      Setting up rooms and having players join them - https://stackoverflow.com/questions/32882891/how-to-get-event-details-in-middleware-for-socket-io
