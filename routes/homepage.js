@@ -86,7 +86,7 @@ router.get('/:gameid', async (req, res) => {
         // Adds the player to the database
         await req.db.playerJoin(req.params.gameid, player);
         // Renders game page
-        res.render('game', { game: game, gameid: game.gameid });
+        res.render('game', { hide_login: true, game: game, gameid: game.gameid });
     }
     // Otherwise brings the user back to the lobby
     else {
