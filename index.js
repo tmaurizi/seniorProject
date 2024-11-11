@@ -94,7 +94,6 @@ app.use('/', require('./routes/homepage'));
 const server=http.createServer(app);
 
 const socketio=require('socket.io');
-const { use } = require('./routes/accounts');
 const io=socketio(server);
 
 var playerToggle = 0;
