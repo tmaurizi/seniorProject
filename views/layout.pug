@@ -1,4 +1,5 @@
 doctype html
+//https://www.hasbro.com/common/instruct/yahtzee.pdf for instructions
 
 html
 	link(rel='stylesheet', href='/style.css')
@@ -16,7 +17,53 @@ html
 		div.popup(id='instructionPopup')
 			.popup-content.bordered
 				h1 Instructions
-				p Roll the dice!
+				.im
+					p On your turn, you may roll the dice UP TO 3 times
+					p Click on the dice that you want to keep
+					p Re-roll until you are content with the dice
+					p Choose the combination that you want the dice to be set for
+				h1 Point Breakdown
+				h3 Upper Section
+				.im
+					span.underline Ones
+					span  - Total of ones only
+					p
+					span.underline Twos
+					span  - Total of twos only
+					p
+					span.underline Threes
+					span  - Total of threes only
+					p
+					span.underline Fours
+					span  - Total of fours only
+					p
+					span.underline Fives
+					span  - Total of fives only
+					p
+					span.underline Sixes
+					span  - Total of sixes only
+				h3 Lower Section
+				.im
+					span.underline 3 of a Kind
+					span  - Total of all 5 dices (must have AT LEAST 3 of same number)
+					p
+					span.underline 4 of a Kind
+					span  - Total of all 5 dices (must have AT LEAST 4 of same number)
+					p
+					span.underline Full House
+					span  - 25 points (must have 3 of one number and 2 of another number)
+					p
+					span.underline Small Straight
+					span  - 30 points (must have AT LEAST 4 consecutive numbers)
+					p 
+					span.underline Large Straight
+					span  - 40 points (must have all 5 consecutive numbers)
+					p
+					span.underline YAHTZEE 
+					span  - 50 Points (must have all 5 of same number)
+					p
+					span.underline Chance
+					span  - Total of all 5 dice
 				button(id='closeInstruction', onclick="closePopup('instructionPopup')") Close
 		script(src='gameFunctions.js')
 		script(src='navigation.js')

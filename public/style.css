@@ -31,6 +31,11 @@ h2 {
     text-align: center;
 }
 
+h3 {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
 hr {
     border: 0.1rem dotted;
 }
@@ -108,7 +113,7 @@ input[type=email] {
     margin: 10% auto;
     padding: 20px;
     border: 1px solid #888888;
-    width: 30%;
+    width: 65%;
     font-weight: bolder;
 }
 
@@ -175,4 +180,13 @@ input[type=email] {
 .errormsg {
     color: darkred;
     font-weight: bold;
+}
+
+.im {
+    text-align: center;
+    font-size: 1rem;
+}
+
+.underline {
+    text-decoration: underline;
 }
