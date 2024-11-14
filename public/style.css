@@ -89,7 +89,7 @@ input[type=email] {
 }
 
 /*https://www.shecodes.io/athena/12186-how-to-center-a-button-using-css*/
-.centerButton {
+.centerBlock {
     margin-left: auto;
     margin-right: auto;
     display: block;
@@ -113,7 +113,7 @@ input[type=email] {
     margin: 10% auto;
     padding: 20px;
     border: 1px solid #888888;
-    width: 65%;
+    width: 55%;
     font-weight: bolder;
 }
 
@@ -168,6 +168,15 @@ input[type=email] {
     margin-left: -5px;
 }
 
+.friendsBox {
+    min-width: 70%;
+    max-width: 80%;
+    height: 1rem;
+    overflow-y: auto;
+    margin: auto;
+    border-radius: 1rem;
+}
+
 .box {
     border: 0.1rem solid;
     border-radius: 1rem;
@@ -189,4 +198,10 @@ input[type=email] {
 
 .underline {
     text-decoration: underline;
+}
+
+.customHeader {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
 }

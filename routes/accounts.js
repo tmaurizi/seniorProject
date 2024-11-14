@@ -161,7 +161,6 @@ router.get('/friends', async (req, res) => {
     }
     // Creates a readable list by splitting each request username into an array
     const request_list = requests.requests.split(' ');
-
     // Renders friendList page with the friend_list, request_list, and each flag if they are empty
     res.render('friendList', { friend_list: friend_list, request_list: request_list, requestFlag: requestFlag, friendFlag: friendFlag, username: req.session.user.username });
 });

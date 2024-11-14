@@ -31,7 +31,10 @@ const onAddFriendSubmitted = async (event) => {
 const displayUsernameChecked = async (data) => {
     // Gets rid of the username from the input box so it's empty
     document.getElementById('username').value = '';
-    // Displays the accompanying message 
+    // Displays the accompanying message
+    if (data.successful) {
+        document.getElementById('message').style.color = 'green';
+    }
     document.getElementById('message').innerHTML = data.message;
 };
 

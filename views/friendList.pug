@@ -6,20 +6,23 @@ block content
 	button(onclick='back()') Back
 	h1 #{username}'s Friend List
 
+	hr
 	input.hidden(type='text',id='currentUser',value=username,disabled)
 
 	.column3
-		div.errormsg(id='message')
+		p.customHeader Add Friends
+		div.errormsg.centerText(id='message')
 		form(type='submit',id='addFriend-form')
-				input(type='text',id='username')
-				button(id='addbtn') Add Friend by Username
+				input.centerBlock(type='text',id='username')
+				br
+				button.centerBlock(id='addbtn') Add Friend by Username
 
 	.column3
-		h3 Friends!
+		p.customHeader Friends
 		if friendFlag
-			div(id='friendFlagMsg') No friends!
+			div.centerText(id='friendFlagMsg') No friends!
 		else
-			table 
+			table.friendsBox
 				tbody
 				each friend in friend_list
 					tr
@@ -27,11 +30,11 @@ block content
 						td: button(id='acceptbtn', onclick='removeFriend("'+friend+'")') Remove
 
 	.column3
-		h3 Friend Requests!
+		p.customHeader Friend Requests
 		if requestFlag
-			div(id='requestFlagMsg') No friend requests!
+			div.centerText(id='requestFlagMsg') No friend requests!
 		else
-			table 
+			table.friendsBox
 				tbody
 				each request in request_list
 					tr

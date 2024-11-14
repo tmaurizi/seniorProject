@@ -298,8 +298,11 @@ class DataStore {
             friend_list = '';
         }
 
+        // Creates a new string with the friends to put into database
+        const newFriends = friend_list.join(' ');
+
         // Updates the database
-        const updated = await this.update('Players', [{ column: 'friends', value: friend_list }], [{ column: 'username', value: player }]);
+        const updated = await this.update('Players', [{ column: 'friends', value: newFriends }], [{ column: 'username', value: player }]);
         return updated;
     }
 
@@ -393,8 +396,11 @@ class DataStore {
             request_list = '';
         }
 
+        // Creates a new string with the requests to put into database
+        const newRequests = request_list.join(' ');
+
         // Updates the database
-        const updated = await this.update('Players', [{ column: 'requests', value: request_list }], [{ column: 'username', value: player }]);
+        const updated = await this.update('Players', [{ column: 'requests', value: newRequests }], [{ column: 'username', value: player }]);
         return updated;
     }
 
