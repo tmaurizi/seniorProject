@@ -16,6 +16,7 @@ html
 		button.right(id='instruction', onclick="popup('instructionPopup')") Instructions
 		div.popup(id='instructionPopup')
 			.popup-content.bordered
+				button.left(id='closeInstruction', onclick="closePopup('instructionPopup')") Close
 				h1 Instructions
 				.im
 					p On your turn, you may roll the dice UP TO 3 times
@@ -64,7 +65,6 @@ html
 					p
 					span.underline Chance
 					span  - Total of all 5 dice
-				button(id='closeInstruction', onclick="closePopup('instructionPopup')") Close
 		script(src='gameFunctions.js')
 		script(src='navigation.js')
 		block content

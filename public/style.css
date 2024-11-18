@@ -3,22 +3,31 @@
 * {
     font-size: 1.05rem;
     font-family: 'Gill Sans', sans-serif;
+    accent-color: white;
 }
 
 table {
     text-align: center;
     border: 0.15rem solid;
     margin: 2rem;
+
 }
 
 button {
     border-radius: 1rem;
     border: 0.1rem solid;
     cursor: pointer;
+    background-color: white;
+    color: black;
+    
 }
 
 button:active {
-    box-shadow: inset 0px 5px 5px darkgrey;
+    box-shadow: inset 0px 5px 10px rgb(0,0,0,0.7);
+}
+
+button:disabled {
+    box-shadow: inset 1rem 1rem 1rem 1rem rgb(0,0,0,0.6);
 }
 
 h1 {
@@ -44,31 +53,34 @@ input[type=text] {
     border-radius: 1rem;
     border: 0.15rem solid;
     padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+    color: black;
+}
+
+.chatTextbox {
     max-width: 80%;
-    min-width: 70%;
+    min-width: 80%;
 }
 
 input[type=password] {
     border-radius: 1rem;
     border: 0.15rem solid;
     padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+    color: black;
 }
 
 input[type=email] {
     border-radius: 1rem;
     border: 0.15rem solid;
     padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+    color: black;
 }
 
+/*https://www.shecodes.io/athena */
 .hidden {
-    background: white;
-    color: white;
-    font-size: 0.0001rem;
-    border-style: none;
-    border: none;
+    display: none;
 }
 
-/*https://www.w3schools.com/howto/howto_css_two_columns.asp*/
+/*https://www.w3schools.com/howto/howto_css_two_columns.asp */
 .column2 {
     float: left;
     width: 50%;
@@ -140,7 +152,6 @@ input[type=email] {
 }
 
 .button {
-    color: black;
     border-radius: 1rem;
     border: 0.1rem solid;
     cursor: pointer;
@@ -178,12 +189,23 @@ input[type=email] {
 }
 
 .box {
-    border: 0.1rem solid;
+    border: 0.2rem solid;
     border-radius: 1rem;
     border-color: black;
     max-width: 85%;
     min-width: 85%;
     padding: 1rem 1rem 1rem 1rem;
+    background-color: rgb(255, 255, 255, 0.10);
+}
+
+.redbox {
+    border: 0.2rem solid;
+    border-radius: 1rem;
+    border-color: red;
+    max-width: 95%;
+    min-width: 95%;
+    margin: auto;
+    padding: 0.5rem;
 }
 
 .errormsg {
@@ -204,4 +226,11 @@ input[type=email] {
     font-size: 1.5rem;
     font-weight: bold;
     text-align: center;
+}
+
+/*https://www.w3schools.com/html/html_images_background.asp */
+body {
+    background-image: url('images/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }

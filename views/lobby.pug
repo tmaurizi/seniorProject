@@ -6,7 +6,7 @@ block content
 	if user
 		button.right(onclick='friendList()') Friend List
 		button.right(onclick='history()') History
-	h1 Lobby
+	img.centerBlock(src='/images/logo.png', alt='Logo', width='300', height='128')
 	button.centerBlock(id='refreshbtn', onclick='refreshButton()') Refresh page to see new games!
 	br
 	hr
@@ -16,40 +16,44 @@ block content
 	else
 		input.hidden(type='text',id='username',value='Guest',disabled)
 	
+	br
 	.column3
 		.box.center
-			h2 Chatbox
-			div.textbox(id='lobbyChatHistory')
-			
-			form(type='submit',id='chat-form')
-				input(type='text',id='chat')
-				button(id='say') Say
+			.redbox
+				h2 Chatbox
+				div.textbox(id='lobbyChatHistory')
+				
+				form(type='submit',id='chat-form')
+					input.chatTextbox(type='text',id='chat')
+					button(id='say') Say
 
 	.column3
 		.box.center
-			h2 Available Games List
-			div.availableGamesBox
-				each game in game_list
-					if game.playeramt<2
-						li: a(href="/"+game.gameid) #{game.gameid}
-			form(action='/create',method='post') 
-				button(id='createbtn', onclick='createGame') Create a new game!
+			.redbox
+				h2 Available Games List
+				div.availableGamesBox
+					each game in game_list
+						if game.playeramt<2
+							li: a(href="/"+game.gameid) #{game.gameid}
+				form(action='/create',method='post') 
+					button(id='createbtn', onclick='createGame') Create a new game!
 
 	.column3
 		.box.center
-			h2 Leaderboard
-				table.center
-					thead
-						tr.bordered
-							th Place
-							th Username
-							th Points Earned
-					tbody
-					each leader, index in leaderboard_list
-						tr
-							td #{index+1}
-							td #{leader.username}
-							td #{leader.totalPoints}
+			.redbox
+				h2 Leaderboard
+					table.center
+						thead
+							tr.bordered
+								th Place
+								th Username
+								th Points Earned
+						tbody
+						each leader, index in leaderboard_list
+							tr
+								td #{index+1}
+								td #{leader.username}
+								td #{leader.totalPoints}
 
 
 	script(src='/socket.io/socket.io.js')

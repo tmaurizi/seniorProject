@@ -10,12 +10,27 @@ const gameid = document.getElementById('gameid').value;
 const username = document.getElementById('username').value;
 let opponent;
 const sock = io();
+let startFlag = 0;
+let playerFlag = 0;
 // Emits that a player has joined this game ( adds them to the room )
 sock.emit('join', { gameid: gameid, username: username });
 
 // <*> FUNCTIONS <*>
 // *******************************************************************
-// TO BE UPDATED - NEED TO HAVE ONLY START WITH 2 PLAYERS AND IT RANDOMLY ASSIGNS SOMEONE TO GO
+// Name: New Player
+// Purpose: After another player has joined, the start button is enabled so you can start the game
+// *******************************************************************
+const newPlayer = async () => {
+    if (startFlag == 1) {
+        document.getElementById('start').disabled = false;
+        playerFlag = 1;
+    }
+    else {
+        startFlag = 1;
+    }
+}
+
+// *******************************************************************
 // Name: On Start Submitted
 // Purpose: After the start button is clicked it sends the player to rest and it's the other player's turn
 // Parameters:
@@ -61,11 +76,11 @@ const showPlayers = async (players) => {
 // *******************************************************************
 const resetPage = async () => {
     // Resets and disables buttons
-    resetButtons();
+    resetMessages();
     disableButtons();
 
-    // Enables start button
-    document.getElementById('start').disabled = false;
+    // Resets start flag so user is waiting for another player
+    startFlag = 1;
 
     // Gets rid of the old opponent's username
     document.getElementById('opponent').innerHTML = '';
@@ -129,7 +144,7 @@ const enableButtons = async () => {
 
     // Calls reset functions to reset rest of the page so it's ready for next turn
     resetDice();
-    resetButtons();
+    resetMessages();
 };
 
 // *******************************************************************
@@ -168,21 +183,15 @@ const disableButtons = async () => {
     document.getElementById('chance').disabled = true;
 
     // Calls reset functions to reset rest of the page so it's ready for next turn
-    resetButtons();
+    resetMessages();
     resetDice();
 };
 
 // *******************************************************************
-// Name: Reset Buttons
-// Purpose: Resets dice color, the possible points, and if there was an error message
+// Name: Reset Messages
+// Purpose: Resets the possible points and if there was an error message
 // *******************************************************************
-const resetButtons = async () => {
-    document.getElementById('d1').style.background = 'lightgray';
-    document.getElementById('d2').style.background = 'lightgray';
-    document.getElementById('d3').style.background = 'lightgray';
-    document.getElementById('d4').style.background = 'lightgray';
-    document.getElementById('d5').style.background = 'lightgray';
-
+const resetMessages = async () => {
     document.getElementById('possiblePoints').innerHTML = '';
     document.getElementById('message').innerHTML = '';
 };
@@ -290,25 +299,33 @@ const onFinishSubmitted = async (event) => {
             sock.emit('choice', { gameid: gameid, choice: buttonChoice, points: possiblePoints });
             // If there's a winner
             if (winner != 0) {
-//COMMENT                //sock emit a finish game where everything is disabled for everyone and its displayed who won
-//COMMENT                //maybe take to new page?
                 var winnerMessage;
                 switch (winner) {
                     case 1:
-                        winnerMessage = 'WINNER IS PLAYER ONE!';
+                        if (playerFlag == 1) {
+                            winnerMessage = 'The winner is... ' + username+'!';
+                        }
+                        else {
+                            winnerMessage = 'The winner is... ' + opponent+'!';
+                        }
                         break;
                     case 2:
-                        winnerMessage = 'WINNER IS PLAYER TWO!';
+                        if (playerFlag == 1) {
+                            winnerMessage = 'The winner is... ' + username+'!';
+                        }
+                        else {
+                            winnerMessage = 'The winner is... ' + opponent+'!';
+                        }
                         break;
                     default:
-                        winnerMessage = "IT'S A DRAW!";
+                        winnerMessage = "It's a draw!";
                 }
                 // Disables the buttons for both players
                 disableButtons();
                 // Emits rest for current player and disabled everything
                 sock.emit('rest');
-//TO BE CHANGED                // Sends the winner message in chat
-                sock.emit('message', { gameid: gameid, text: winnerMessage });
+                // Sends the winner Announcement
+                sock.emit('gameWon', { gameid: gameid, winner: winnerMessage });
                 // Emits finish game with points so they can be added to database
                 sock.emit('finishGame', { gameid: gameid, p1points: p1total, p2points: p2total });
             }
@@ -330,6 +347,11 @@ const onFinishSubmitted = async (event) => {
     else {
         document.getElementById('message').innerHTML = 'Please choose where to apply dice!';
     }
+};
+
+const winnerAnnouncement = async (winnerMessage) => {
+    document.getElementById('winnerAnnouncement').innerHTML = winnerMessage;
+    document.getElementById('gameWinner').classList.add('show');
 };
 
 // *******************************************************************
@@ -361,6 +383,8 @@ sock.on('turn', enableButtons);
 sock.on('refresh', refreshPage);
 sock.on('reset', resetPage);
 sock.on('returnPlayers', showPlayers);
+sock.on('joinedRoom', newPlayer);
+sock.on('gameOver', winnerAnnouncement);
 
 // Form submission listeners
 document.getElementById('chat-form').addEventListener('submit', onChatSubmitted);

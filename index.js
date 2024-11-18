@@ -195,12 +195,18 @@ io.on('connection', (sock) => {
 
     // Allows message to be sent to all players in the lobby
     sock.on('lobbyMsg', (data) => {
-        io.in(0).emit('lobbyMsg', [data.text, data.username]);
+        // Makes sure the message isn't empty
+        if (data.text != '') {
+            io.in(0).emit('lobbyMsg', [data.text, data.username]);
+        }
     });
 
-    // Allows messages to be sent to other players if they are in the same room
-    sock.on('message', (data) => { 
-        io.in(data.gameid).emit('message', [data.text, data.username]);
+    // Allows messages to be sent to other players if they are in the same room/game
+    sock.on('message', (data) => {
+        // Makes sure the message isn't empty
+        if (data.text != '') {
+            io.in(data.gameid).emit('message', [data.text, data.username]);
+        }
     });
 
     // Lets players join rooms
@@ -213,6 +219,8 @@ io.on('connection', (sock) => {
             io.in(room.gameid).emit('message', username + ' joined!');
         }
         sock.join(room.gameid);
+
+        io.in(room.gameid).emit('joinedRoom');
     });
 
     // If a player leaves the game
@@ -257,6 +265,11 @@ io.on('connection', (sock) => {
     // Updates the database to have the finished game points stored
     sock.on('finishGame', async (data) => {
         await updatePlayerAfterGame(data.gameid, data.p1points, data.p2points);
+    });
+
+    // Sends winner messsage to game players
+    sock.on('gameWon', async (data) => {
+        io.in(data.gameid).emit('gameOver', data.winner);
     });
 
     // Tests username from friend request to make sure it's valid and sends information back to client
