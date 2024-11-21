@@ -3,25 +3,33 @@ extends layout.pug
 //- Page for players to sign up by making a username and password 
 
 block content
+	button(onclick='back()') Play as guest
+	br
 	h1 Signup
+	hr
+	br
 
 	if message
-			p.errormsg #{message}
-
-	form(action = '/signup', method='post')
-		p
-			input(type = 'email', placeholder = 'Email Address', name = 'email')
-		p
-			input(type = 'text', placeholder = 'Username', name = 'username')
-		p
-			input(type = 'password', placeholder = 'Password', name = 'password1')
-		p
-			input(type = 'password', placeholder = 'Confirm Password', name = 'password2')
-		p
-			button(type = 'submit') Signup!
-	p
-		button(onclick='back()') Play as guest
-	p
-		button(onclick='login()') Already have an account? Login!
+		.box.center
+			.redbox
+				p.errormsg.centerText #{message}
+		br
+	
+	.box.center
+		.redbox
+			form.centerText(action = '/signup', method='post')
+				p
+					input.signupInput(type = 'email', placeholder = 'Email Address', name = 'email')
+				p
+					input.signupInput(type = 'text', placeholder = 'Username', name = 'username')
+				p
+					input.signupInput(type = 'password', placeholder = 'Password', name = 'password1')
+				p
+					input.signupInput(type = 'password', placeholder = 'Confirm Password', name = 'password2')
+				p
+					button(type = 'submit') Signup!
+			hr
+			p
+				button.centerBlock(onclick='login()') Already have an account? Login!
 
 	script(src='navigation.js')

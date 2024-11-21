@@ -56,6 +56,10 @@ input[type=text] {
     color: black;
 }
 
+input[type=text]::placeholder {
+    text-align: center;
+}
+
 .chatTextbox {
     max-width: 80%;
     min-width: 80%;
@@ -68,11 +72,19 @@ input[type=password] {
     color: black;
 }
 
+input[type=password]::placeholder {
+    text-align: center;
+}
+
 input[type=email] {
     border-radius: 1rem;
     border: 0.15rem solid;
     padding: 0.25rem 0.5rem 0.25rem 0.5rem;
     color: black;
+}
+
+input[type=email]::placeholder {
+    text-align: center;
 }
 
 /*https://www.shecodes.io/athena */
@@ -227,8 +239,12 @@ input[type=email] {
 }
 
 .errormsg {
-    color: darkred;
+    color: rgb(162, 0, 0);
     font-weight: bold;
+}
+
+.signupInput {
+    min-width: 35%;
 }
 
 .im {

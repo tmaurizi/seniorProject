@@ -3,21 +3,31 @@ extends layout.pug
 //- Page for players to log in to their accounts
 
 block content
+	button(onclick='back()') Play as guest
+	br
 	h1 Login
 
+	hr
+	br
 	if message
-			p.errormsg #{message}
-
-	form(action = '/login', method = 'post')
-		input(type = 'email', placeholder = 'Email Address', name = 'email')
+		.box.center
+			.redbox
+				p.errormsg.centerText #{message}
 		br
-		input(type = 'password', placeholder = 'Password', name = 'password')
-		br
-		button(type = 'submit') Login
+	.box.center
+		.redbox
+			form.centerText(action = '/login', method = 'post')
+				br
+				input.signupInput(type = 'email', placeholder = 'Email Address', name = 'email')
+				br
+				br
+				input.signupInput(type = 'password', placeholder = 'Password', name = 'password')
+				br
+				br
+				button(type = 'submit') Login
 
-	p
-		button(onclick='signup()') Don't have an account? Sign up!
-	p
-		button(onclick='back()') Play as guest
+			hr
+			p
+				button.centerBlock(onclick='signup()') Don't have an account? Sign up!
 
 	script(src='navigation.js')
