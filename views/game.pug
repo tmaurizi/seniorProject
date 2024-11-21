@@ -12,6 +12,9 @@ block content
 	img.centerBlock(src='/images/logo.png', alt='Logo', width='300', height='128')
 	br
 	h2 Game id ~ #{game.gameid}
+	div.centerText(id='opponent')
+	hr
+	br
 
 	div.popup(id='gameWinner')
 		.popup-content.bordered
@@ -19,12 +22,23 @@ block content
 			p.centerText(id='winnerAnnouncement')
 			button(id='closeWinner',onclick="closePopup('gameWinner')") Close
 
+	//- Contains user hints and chatbox
+	.column3
+		.box.center
+			.redbox
+				h2 Chatbox
+				div.textbox(id='chatHistory'+game.gameid)
+				
+				form(type='submit',id='chat-form')
+					input.chatTextbox(type='text',id='chat')
+					button(id='say') Say
+
 	//- All player interactions (contains buttons)
-	.column3.center
+	.column3
 		.box
 			.redbox
 				form(type='submit',id='startGame-form')
-					button(id='start', disabled) Start!
+					button.centerBlock(id='start', disabled) Start!
 
 				input.hidden(type='text',id='gameid',value=game.gameid,disabled)
 				if user
@@ -33,24 +47,33 @@ block content
 					input.hidden(type='text',id='username',value='Guest',disabled)
 
 				br
-				button(id='d1', onclick='saveDice(this.id)',disabled) 0
-				button(id='d2', onclick='saveDice(this.id)',disabled) 0
-				button(id='d3', onclick='saveDice(this.id)',disabled) 0
-				button(id='d4', onclick='saveDice(this.id)',disabled) 0
-				button(id='d5', onclick='saveDice(this.id)',disabled) 0
+
+
+				br
+				div.centerText
+					button.diceButton(id='d1', onclick='saveDice(this.id)',disabled)
+						img(src='/images/dice-1.png', alt='Dice 1', width='40', height='40', id='d1img')
+					button.diceButton(id='d2', onclick='saveDice(this.id)',disabled) 
+						img(src='/images/dice-2.png', alt='Dice 2', width='40', height='40', id='d2img')
+					button.diceButton(id='d3', onclick='saveDice(this.id)',disabled) 
+						img(src='/images/dice-3.png', alt='Dice 3', width='40', height='40', id='d3img')
+					button.diceButton(id='d4', onclick='saveDice(this.id)',disabled) 
+						img(src='/images/dice-4.png', alt='Dice 4', width='40', height='40', id='d4img')
+					button.diceButton(id='d5', onclick='saveDice(this.id)',disabled) 
+						img(src='/images/dice-5.png', alt='Dice 5', width='40', height='40', id='d5img')
 				br
 
 				br
-				button(id='rollbtn', onclick='rollDice()',disabled) Roll 
+				button.centerBlock(id='rollbtn', onclick='rollDice()',disabled) Roll 
 				form(type='submit',id='finish-form')
-					button(id='finishbtn',disabled) Finish Turn
+					button.centerBlock(id='finishbtn',disabled) Finish Turn
 				br
-				button(id='hintbtn',onclick="popup('hintPopup')",disabled) Hint
+				button.centerBlock(id='hintbtn',onclick="popup('hintPopup')",disabled) Hint
 				div.popup(id='hintPopup')
 					.popup-content.bordered
 						h1 Hint!
 						p.centerText(id='hintParagraph')
-						button(id='closeHint', onclick="closePopup('hintPopup')") Close
+						button.centerBlock(id='closeHint', onclick="closePopup('hintPopup')") Close
 
 				br
 				div.errormsg(id='message')
@@ -62,7 +85,6 @@ block content
 	.column3.center
 		.box
 			.redbox
-				div(id='opponent')
 				table
 					thead
 						tr.bordered
@@ -148,17 +170,6 @@ block content
 							th Total
 							td: div(id='p1total') 0
 							td: div(id='p2total') 0
-
-	//- Contains user hints and chatbox
-	.column3
-		.box.center
-			.redbox
-				h2 Chatbox
-				div.textbox(id='chatHistory'+game.gameid)
-				
-				form(type='submit',id='chat-form')
-					input.chatTextbox(type='text',id='chat')
-					button(id='say') Say
 
 	//- Script sources
 	script(src='/socket.io/socket.io.js')

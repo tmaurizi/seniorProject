@@ -29,11 +29,21 @@ player = 'p1';
 // *******************************************************************
 const saveDice = async (id) => {
     // Gets the button element
-    const btn = document.getElementById(id);
+    const btn = document.getElementById(id+'img');
     // Gets the corrected dice id number
     const index = parseInt(id[1]) - 1;
 
     // Depending on the current color of the button it will switch to either be saved or unsaved
+
+    if (!btn.classList.contains('saveDice')) {
+        btn.classList.add('saveDice');
+        dice[index][1] = true;
+    }
+    else if (btn.classList.contains('saveDice')) {
+        btn.classList.remove('saveDice');
+        dice[index][1] = false;
+    }
+/*
     if (btn.style.background == 'lightgray') {
         btn.style.background = 'red';
         dice[index][1] = true;
@@ -41,7 +51,7 @@ const saveDice = async (id) => {
     else if (btn.style.background == 'red') { 
         btn.style.background = 'lightgray';
         dice[index][1] = false;
-    }
+    }*/
 };
 
 // *******************************************************************
@@ -99,11 +109,32 @@ const resetDice = async () => {
 // Purpose: Updates each dice on the page with it's assigned value
 // *******************************************************************
 const updateDice = async () => {
-    document.getElementById('d1').innerHTML = dice[0][0];
-    document.getElementById('d2').innerHTML = dice[1][0];
-    document.getElementById('d3').innerHTML = dice[2][0];
-    document.getElementById('d4').innerHTML = dice[3][0];
-    document.getElementById('d5').innerHTML = dice[4][0];
+    const imageNames = ['d1img', 'd2img', 'd3img', 'd4img', 'd5img'];
+    // Goes through each dice and depending on the value, will update the image source
+    for (let i = 0; i < 5; i++) {
+        switch (dice[i][0]) {
+            case 1:
+                document.getElementById(imageNames[i]).src = '\\images\\dice-1.png';
+                break;
+            case 2:
+                document.getElementById(imageNames[i]).src = '\\images\\dice-2.png';
+                break;
+            case 3:
+                document.getElementById(imageNames[i]).src = '\\images\\dice-3.png';
+                break;
+            case 4:
+                document.getElementById(imageNames[i]).src = '\\images\\dice-4.png';
+                break;
+            case 5:
+                document.getElementById(imageNames[i]).src = '\\images\\dice-5.png';
+                break;
+            case 6:
+                document.getElementById(imageNames[i]).src = '\\images\\dice-6.png';
+                break;
+            default:
+                document.getElementById(imageNames[i]).src = '\\images\\dice-1.png';
+        }
+    }
 };
 
 // *******************************************************************

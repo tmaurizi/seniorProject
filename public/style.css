@@ -107,6 +107,24 @@ input[type=email] {
     display: block;
 }
 
+.diceButton {
+    border: none !important;
+    background-color: rgb(0,0,0,0) !important;
+    box-shadow: none !important;
+    display: inline-block;
+}
+
+.centerDice {
+    display:inline-block;
+    margin: 0 auto;
+}
+
+.saveDice {
+    border-radius: 0.7rem;
+    border: solid 0.2rem;
+    color: red;
+}
+
 /*https://www.geeksforgeeks.org/how-to-create-popup-box-using-html-and-css/*/
 .popup {
     position: fixed;
