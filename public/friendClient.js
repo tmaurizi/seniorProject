@@ -33,7 +33,7 @@ const displayUsernameChecked = async (data) => {
     document.getElementById('username').value = '';
     // Displays the accompanying message
     if (data.successful) {
-        document.getElementById('message').style.color = 'green';
+        document.getElementById('message').style.color = 'limegreen';
     }
     document.getElementById('message').innerHTML = data.message;
 };

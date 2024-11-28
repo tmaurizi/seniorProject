@@ -1,11 +1,21 @@
 /* CSS PAGE */
 
+/* Everything */
 * {
     font-size: 1.05rem;
     font-family: 'Gill Sans', sans-serif;
     accent-color: white;
 }
 
+/* Used to create background */
+/* https://www.w3schools.com/html/html_images_background.asp */
+body {
+    background-image: url('images/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Tables */
 table {
     text-align: center;
     border: 0.15rem solid;
@@ -13,56 +23,58 @@ table {
 
 }
 
+/* Buttons and States */
 button {
     border-radius: 1rem;
     border: 0.1rem solid;
     cursor: pointer;
-    background-color: white;
-    color: black;
-    
+    background-color: rgb(158, 187, 156);
+    color: black;    
 }
-
 button:active {
     box-shadow: inset 0px 5px 10px rgb(0,0,0,0.7);
 }
-
 button:disabled {
     box-shadow: inset 1rem 1rem 1rem 1rem rgb(0,0,0,0.6);
 }
 
+
+.diceButton {
+    border: none !important;
+    background-color: rgb(0,0,0,0) !important;
+    box-shadow: none !important;
+    display: inline-block;
+}
+
+/* Headers */
 h1 {
     font-size: 1.8rem;
     text-align: center;
 }
-
 h2 {
     font-size: 1.25rem;
     text-align: center;
 }
-
 h3 {
     font-size: 1.5rem;
     text-align: center;
 }
 
-hr {
-    border: 0.1rem dotted;
+.customHeader {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
 }
 
+/* Input and States */
 input[type=text] {
     border-radius: 1rem;
     border: 0.15rem solid;
     padding: 0.25rem 0.5rem 0.25rem 0.5rem;
     color: black;
 }
-
 input[type=text]::placeholder {
     text-align: center;
-}
-
-.chatTextbox {
-    max-width: 80%;
-    min-width: 80%;
 }
 
 input[type=password] {
@@ -71,7 +83,6 @@ input[type=password] {
     padding: 0.25rem 0.5rem 0.25rem 0.5rem;
     color: black;
 }
-
 input[type=password]::placeholder {
     text-align: center;
 }
@@ -82,98 +93,18 @@ input[type=email] {
     padding: 0.25rem 0.5rem 0.25rem 0.5rem;
     color: black;
 }
-
 input[type=email]::placeholder {
     text-align: center;
 }
 
-/*https://www.shecodes.io/athena */
-.hidden {
-    display: none;
+.signupInput {
+    min-width: 35%;
 }
 
-/*https://www.w3schools.com/howto/howto_css_two_columns.asp */
-.column2 {
-    float: left;
-    width: 50%;
-}
-
-.column3 {
-    float: left;
-    width: 33%;
-}
-
-.center {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.centerText {
-    text-align: center;
-}
-
-/*https://www.shecodes.io/athena/12186-how-to-center-a-button-using-css*/
-.centerBlock {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-}
-
-.diceButton {
-    border: none !important;
-    background-color: rgb(0,0,0,0) !important;
-    box-shadow: none !important;
-    display: inline-block;
-}
-
-.centerDice {
-    display:inline-block;
-    margin: 0 auto;
-}
-
-.saveDice {
-    border-radius: 0.7rem;
-    border: solid 0.2rem;
-    color: red;
-}
-
-/*https://www.geeksforgeeks.org/how-to-create-popup-box-using-html-and-css/*/
-.popup {
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.5);
-    display: none;
-}
-
-.popup-content {
-    background-color: white;
-    margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #888888;
-    width: 55%;
-    font-weight: bolder;
-}
-
-.popup-content button {
-    display: block;
-    margin: 0 auto;
-}
-
-.show {
-    display: block;
-}
-
-.right {
-    float: right;
-}
-
-.left {
-    float: left;
+/* Boxes and Borders*/
+.chatTextbox {
+    max-width: 80%;
+    min-width: 80%;
 }
 
 .bordered {
@@ -181,12 +112,8 @@ input[type=email]::placeholder {
     border: 0.15rem dotted;
 }
 
-.button {
-    border-radius: 1rem;
-    border: 0.1rem solid;
-    cursor: pointer;
-    padding: 0.1rem 0.5rem 0.1rem 0.5rem;
-    text-decoration: none;
+hr {
+    border: 0.1rem dotted;
 }
 
 /*https://stackoverflow.com/questions/21227287/make-div-scrollable*/
@@ -238,33 +165,123 @@ input[type=email]::placeholder {
     padding: 0.5rem;
 }
 
-.errormsg {
-    color: rgb(162, 0, 0);
-    font-weight: bold;
+/* Hidden elements */
+/* https://www.shecodes.io/athena */
+.hidden {
+    display: none;
 }
 
-.signupInput {
-    min-width: 35%;
+/* Columns */
+/* https://www.w3schools.com/howto/howto_css_two_columns.asp */
+.column2 {
+    float: left;
+    width: 50%;
 }
 
+.column3 {
+    float: left;
+    width: 33%;
+}
+
+/* Positions */
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+.centerText {
+    text-align: center;
+}
+
+.listBottom {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Used to center buttons and other elements */
+/* https://www.shecodes.io/athena/12186-how-to-center-a-button-using-css */
+.centerBlock {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.centerDice {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+/* Popup */
+/* https://www.geeksforgeeks.org/how-to-create-popup-box-using-html-and-css/ */
+.popup {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+    display: none;
+}
+.popup-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888888;
+    width: 55%;
+    font-weight: bolder;
+}
+.popup-content button {
+    display: block;
+    margin: 0 auto;
+}
+.show {
+    display: block;
+}
+
+/* Stands for Instruction Message */
 .im {
     text-align: center;
     font-size: 1rem;
+}
+
+/* Functionality */
+.saveDice {
+    border-radius: 0.7rem;
+    border: solid 0.2rem;
+    color: red;
+}
+
+.errormsg {
+    color: red;
+    font-weight: bold;
 }
 
 .underline {
     text-decoration: underline;
 }
 
-.customHeader {
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-align: center;
+/* Links */
+a {
+    border: solid black 0.1rem;
+    border-radius: 1rem;
+    padding: 0.1rem;
+    color: red;
+    text-decoration: none;
 }
-
-/*https://www.w3schools.com/html/html_images_background.asp */
-body {
-    background-image: url('images/background.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
+a::after {
+    border: solid black 0.1rem;
+    border-radius: 1rem;
+    padding: 0.1rem;
+    color: red;
+    text-decoration: none;
 }

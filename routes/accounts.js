@@ -165,5 +165,23 @@ router.get('/friends', async (req, res) => {
     res.render('friendList', { friend_list: friend_list, request_list: request_list, requestFlag: requestFlag, friendFlag: friendFlag, username: req.session.user.username });
 });
 
+// *******************************************************************
+// Name: GET delete
+// Purpose: Renders delete page for user
+// *******************************************************************
+router.get('/delete', async (req, res) => {
+    res.render('delete', { username: req.session.user.username });
+});
+
+// *******************************************************************
+// Name: POST delete
+// Purpose: Deletes player from database and "resets" connection
+// *******************************************************************
+router.post('/delete', async (req, res) => {
+    await req.db.deletePlayer(req.session.user.username);
+    req.session.user = undefined;
+    res.redirect('/');
+});
+
 module.exports = router;
 

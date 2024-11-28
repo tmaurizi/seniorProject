@@ -94,9 +94,12 @@ const rollDice = async () => {
 // *******************************************************************
 const resetDice = async () => {
     // Iterates through the dice array and switches them to not being saved and their value is 0
+    const diceList = ['d1img', 'd2img', 'd3img', 'd4img', 'd5img'];
     for (var i = 0; i < 5; i++) {
         dice[i][1] = false;
         dice[i][0] = 0;
+        let btn = document.getElementById(diceList[i]);
+        btn.classList.remove('saveDice');
     };
     // Calls function to update the dice values on the screen
     updateDice();

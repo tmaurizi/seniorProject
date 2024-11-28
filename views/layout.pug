@@ -9,7 +9,7 @@ html
 		if !hide_login
 			if user
 				span
-					span Welcome back #{user.username}!							
+					span.customHeader Welcome back #{user.username}!						
 					button(onclick='logout()') Logout
 			else
 				button(onclick='login()') Login

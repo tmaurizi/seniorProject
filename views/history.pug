@@ -4,19 +4,24 @@ block content
 	br
 	br
 	button(onclick='back()') Back
+	button(onclick='deleteAct()') Delete Account
 	h1 History
+	hr
+	br
 
-	table.center 
-		thead 
-			tr.bordered
-				th Game ID
-				th Total Points
-				th Opponent
-		tbody
-		each game in gamelist
-			tr
-				td #{game[0]}
-				td #{game[1]}
-				td #{game[2]}
+	.box.center
+		.redbox
+			table.center 
+				thead 
+					tr.bordered
+						th Game ID
+						th Total Points
+						th Opponent
+				tbody
+				each game in gamelist
+					tr
+						td #{game[0]}
+						td #{game[1]}
+						td #{game[2]}
 
 	script(src='navigation.js')

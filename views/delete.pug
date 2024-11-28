@@ -1,0 +1,12 @@
+extends layout.pug
+
+block content
+	h1 Are you sure you want to delete your account?
+	h2 #{username}
+	hr
+	br
+	form(action='/delete', method='post')
+		button.centerBlock(type='submit') Confirm
+	button.centerBlock(onclick='back()') Nevermind
+
+	script(src='navigation.js')

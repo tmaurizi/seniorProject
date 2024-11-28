@@ -8,39 +8,48 @@ block content
 
 	hr
 	input.hidden(type='text',id='currentUser',value=username,disabled)
+	br
 
 	.column3
-		p.customHeader Add Friends
-		div.errormsg.centerText(id='message')
-		form(type='submit',id='addFriend-form')
-				input.centerBlock(type='text',id='username')
+		.box
+			.redbox
+				p.customHeader Add Friends
+				div.errormsg.centerText(id='message')
 				br
-				button.centerBlock(id='addbtn') Add Friend by Username
+				form(type='submit',id='addFriend-form')
+						input.centerBlock(type='text',id='username')
+						br
+						button.centerBlock(id='addbtn') Add Friend by Username
+						br
 
 	.column3
-		p.customHeader Friends
-		if friendFlag
-			div.centerText(id='friendFlagMsg') No friends!
-		else
-			table.friendsBox
-				tbody
-				each friend in friend_list
-					tr
-						td #{friend}
-						td: button(id='acceptbtn', onclick='removeFriend("'+friend+'")') Remove
+		.box
+			.redbox
+				p.customHeader Friends
+				if friendFlag
+					div.centerText(id='friendFlagMsg') No friends!
+				else
+					table.friendsBox
+						tbody
+						each friend in friend_list
+							tr
+								td #{friend}
+								td: button(id='acceptbtn', onclick='removeFriend("'+friend+'")') Remove
 
 	.column3
-		p.customHeader Friend Requests
-		if requestFlag
-			div.centerText(id='requestFlagMsg') No friend requests!
-		else
-			table.friendsBox
-				tbody
-				each request in request_list
-					tr
-						td #{request}
-						td: button(id='acceptbtn', onclick='acceptFriend("'+request+'")') Accept
-						td: button(id='denybtn', onclick='denyFriend("'+request+'")') Deny
+		.box
+			.redbox
+				p.customHeader Friend Requests
+				if requestFlag
+					div.centerText(id='requestFlagMsg') No friend requests!
+				else
+					table.friendsBox
+						tbody
+						each request in request_list
+							tr
+								td #{request}
+								td: button(id='acceptbtn', onclick='acceptFriend("'+request+'")') Accept
+								td: button(id='denybtn', onclick='denyFriend("'+request+'")') Deny
 			
 
 	script(src='/socket.io/socket.io.js')

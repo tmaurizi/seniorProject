@@ -5,8 +5,6 @@ extends layout.pug
 //-		Sending the id to the function - https://stackoverflow.com/questions/4825295/onclick-to-get-the-id-of-the-clicked-button
 
 block content
-	br 
-	br
 	form(type='submit',id='leaveGame-form')
 		button(id='backbtn') Back
 	img.centerBlock(src='/images/logo.png', alt='Logo', width='300', height='128')
@@ -76,7 +74,7 @@ block content
 						button.centerBlock(id='closeHint', onclick="closePopup('hintPopup')") Close
 
 				br
-				div.errormsg(id='message')
+				div.errormsg.centerText(id='message')
 				h2 Possible Points!
 				div(id='possiblePoints') 
 				br

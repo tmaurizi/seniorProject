@@ -34,7 +34,7 @@ block content
 				div.availableGamesBox
 					each game in game_list
 						if game.playeramt<2
-							li: a(href="/"+game.gameid) #{game.gameid}
+							li.listBottom: a(href="/"+game.gameid) #{game.gameid}
 				form(action='/create',method='post') 
 					button(id='createbtn', onclick='createGame') Create a new game!
 

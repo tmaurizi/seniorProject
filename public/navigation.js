@@ -51,3 +51,11 @@ const logout = async () => {
 const signup = async () => {
     location.assign('/signup');
 };
+
+// *******************************************************************
+// Name: Delete Account
+// Purpose: Takes user to the delete confirmation page
+// *******************************************************************
+const deleteAct = async () => {
+    location.assign('/delete');
+};

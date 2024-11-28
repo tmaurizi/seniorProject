@@ -97,6 +97,46 @@ class DataStore {
     }
 
     // *******************************************************************
+    // Name: Delete Player
+    // Purpose: Deletes player from database and wipes their information from past games
+    // Parameters:
+    //      username - the player's username
+    // *******************************************************************
+    async deletePlayer(username) {
+        // Find list of games that the player was in and update each game to add "deleted" keyword to opponent
+        const gameList = await this.findGameList();
+        for (let i = 0; i < gameList.length; i++) {
+            if (gameList[i].p1username == username) {
+                await this.update('Games', [{ column: 'p1username', value: 'Deleted' }], [{ column: 'gameid', value: gameList[i].gameid }]);
+            }
+            else if (gameList[i].p2username == username) {
+                await this.update('Games', [{ column: 'p2username', value: 'Deleted' }], [{ column: 'gameid', value: gameList[i].gameid }]);
+            }
+        }        
+
+        // Find list of player's friends and removes the player's username from friend list
+        const friendList = await this.findFriendsByPlayerUsername(username);
+        let friend_list = friendList.friends.split(' ');
+        for (let i = 0; i < friend_list.length; i++) {
+            await this.removeFriendByPlayerUsername(friend_list[i], username);
+        }
+
+        // Finds list of all player's and checks if they have requests from the player and then removes the player's request
+        const playerList = await this.findPlayerList();
+        for (let i = 0; i < playerList.length; i++) {
+            let tempList = playerList[i].requests.split(' ');
+            for (let j = 0; j < tempList.length; j++) {
+                if (tempList[j] == username) {
+                    await this.removeRequest(playerList[i].username, username);
+                }
+            }           
+        }
+
+        // Delete player from database
+        await this.delete('Players', [{ column: 'username', value: username }]);
+    }
+
+    // *******************************************************************
     // Name: Find Player List
     // Purpose: Returns a list of all the players in the database
     // Return: The list of players
@@ -294,12 +334,10 @@ class DataStore {
         }
 
         // If the list is empty after removing the friend removes the spaces and resets the list
-        if (friend_list.length == 0) {
-            friend_list = '';
+        let newFriends = '';
+        if (friend_list.length != 0) {
+            newFriends = friend_list.join(' ');
         }
-
-        // Creates a new string with the friends to put into database
-        const newFriends = friend_list.join(' ');
 
         // Updates the database
         const updated = await this.update('Players', [{ column: 'friends', value: newFriends }], [{ column: 'username', value: player }]);
@@ -392,12 +430,10 @@ class DataStore {
         }
 
         // If the list is empty after removing the request removes the spaces and resets the list
-        if (request_list.length == 0) { 
-            request_list = '';
+        let newRequests = '';
+        if (request_list.length != 0) { 
+            newRequests = request_list.join(' ');
         }
-
-        // Creates a new string with the requests to put into database
-        const newRequests = request_list.join(' ');
 
         // Updates the database
         const updated = await this.update('Players', [{ column: 'requests', value: newRequests }], [{ column: 'username', value: player }]);
