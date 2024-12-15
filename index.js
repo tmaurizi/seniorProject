@@ -121,8 +121,8 @@ const io=socketio(server);
 //      p2total - player 2's total points
 // *******************************************************************
 const updatePlayerAfterGame = async (gameid, p1total, p2total) => { 
-    const p1username = await db.findPlayer1FromGameid(gameid);
-    const p2username = await db.findPlayer2FromGameid(gameid);
+    const p2username = await db.findPlayer1FromGameid(gameid);
+    const p1username = await db.findPlayer2FromGameid(gameid);
 
     await db.updatePlayerPoints(p1username, p1total);
     await db.updatePlayerPoints(p2username, p2total);
