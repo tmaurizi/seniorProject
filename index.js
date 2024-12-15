@@ -246,9 +246,10 @@ io.on('connection', (sock) => {
 
     // After a choice is made and submitted, the tables are updated (on screen and database)
     sock.on('choice', async (data) => {
+        var tempGame = await db.findGameById(data.gameid);
         var col = data.player + data.choice;
         await db.updateTableById(data.gameid, col, data.points);
-        io.in(data.gameid).emit('refresh', col, data.points);
+        io.in(data.gameid).emit('refresh', col, data.points, tempGame);
     });
 
     // Updates the database to have the finished game points stored

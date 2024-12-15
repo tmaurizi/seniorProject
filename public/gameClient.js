@@ -245,7 +245,9 @@ const writeMessage = async (data) => {
 //      id - the column of that is being changed
 //      sum - the sum of the dice in correlation to the column chosen
 // *******************************************************************
-const refreshPage = async (id, sum) => {
+const refreshPage = async (id, sum, tempGame) => {
+    console.log(tempGame);
+
     // Sets the column's value to the sum
     document.getElementById(id).innerHTML = sum;
 

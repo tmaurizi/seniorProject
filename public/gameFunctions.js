@@ -216,10 +216,14 @@ const popup = async (id) => {
 
 // *******************************************************************
 // Name: Close Popup
-// Purpose: Closes the popup on screen
+// Purpose: Closes the popup on screen and takes players to lobby
 // *******************************************************************
 const closePopup = async (id) => {
     document.getElementById(id).classList.remove('show');
+
+    if (id = 'gameWinner') {
+        location.assign('/');
+    }
 };
 
 // *******************************************************************
