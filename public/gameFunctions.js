@@ -220,10 +220,15 @@ const popup = async (id) => {
 // *******************************************************************
 const closePopup = async (id) => {
     document.getElementById(id).classList.remove('show');
+};
 
-    if (id = 'gameWinner') {
-        location.assign('/');
-    }
+// *******************************************************************
+// Name: Close Winner Popup
+// Purpose: Closes the winner's popup and takes player to lobby
+// *******************************************************************
+const closeWinnerPopup = async (id) => {
+    document.getElementById(id).classList.remove('show');
+    location.assign('/');
 };
 
 // *******************************************************************
