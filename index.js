@@ -244,16 +244,9 @@ io.on('connection', (sock) => {
         sock.broadcast.to(room.gameid).emit('turn');
     });
 
-    // After a choice is made and submitted, the player get's switched and the tables are updated (on screen and database)
+    // After a choice is made and submitted, the tables are updated (on screen and database)
     sock.on('choice', async (data) => {
-        var col;
-        if (data.player == 0) {
-            col = 'p1';
-        }
-        else {
-            col = 'p2';
-        }
-        col += data.choice;
+        var col = data.player + data.choice;
         await db.updateTableById(data.gameid, col, data.points);
         io.in(data.gameid).emit('refresh', col, data.points);
     });
