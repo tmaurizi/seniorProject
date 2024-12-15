@@ -158,7 +158,7 @@ hr {
 .redbox {
     border: 0.2rem solid;
     border-radius: 1rem;
-    border-color: red;
+    border-color: rgb(168, 0, 0);
     max-width: 95%;
     min-width: 95%;
     margin: auto;
@@ -258,7 +258,7 @@ hr {
 .saveDice {
     border-radius: 0.7rem;
     border: solid 0.2rem;
-    color: red;
+    color: rgb(198,0,0);
 }
 
 .errormsg {
@@ -275,13 +275,13 @@ a {
     border: solid black 0.1rem;
     border-radius: 1rem;
     padding: 0.1rem;
-    color: red;
+    color: rgb(198,0,0);
     text-decoration: none;
 }
 a::after {
     border: solid black 0.1rem;
     border-radius: 1rem;
     padding: 0.1rem;
-    color: red;
+    color: rgb(198,0,0);
     text-decoration: none;
 }
