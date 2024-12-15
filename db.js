@@ -620,9 +620,9 @@ class DataStore {
         const game = await this.read('Games', [{ column: 'gameid', value: gameid }], 'playeramt');
 
         // Makes sure to set the correct player to the username so it's not overwriting the player 1 or player 2
-        let tempPlayer = 'p1';
+        let tempPlayer = 'p2';
         if (game[0].playeramt == 1) {
-            tempPlayer = 'p2';
+            tempPlayer = 'p1';
         }
 
         // Updates database with the new playeramt and the username of the correct player

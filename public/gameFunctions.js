@@ -157,10 +157,10 @@ const checkWinner = async (player, p2total) => {
 
         // Determines the winner
         if (p1total > p2total) {
-            winner = 2;
+            winner = 1;
         }
         else if (p1total < p2total) {
-            winner = 1;
+            winner = 2;
         }
         else {
             winner = 3;
