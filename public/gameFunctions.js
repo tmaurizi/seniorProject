@@ -151,7 +151,7 @@ const checkWinner = async (player, p2total) => {
     // Counter is upped everytime a turn passes
     counter += 1;
     // Checks that 13 turns have passed ( every column in filled in ) and it's the end of the second player's turn
-    if (counter == 13 && player == 'p2') {
+    if (counter == 2 && player == 'p2') {
         // Gets player 1's total from the total on screen
         p1total = parseInt(document.getElementById('p1total').innerHTML);
 

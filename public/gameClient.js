@@ -310,7 +310,7 @@ const onFinishSubmitted = async (event) => {
                         }
                         break;
                     case 2:
-                        if (playerFlag == 1) {
+                        if (playerFlag == 0) {
                             winnerMessage = 'The winner is... ' + username+'!';
                         }
                         else {
