@@ -296,7 +296,7 @@ const onFinishSubmitted = async (event) => {
             p1total = parseInt(document.getElementById('p1total').innerHTML);
             checkWinner(player, p2total);
             // Emits to socket the choice so it can be changed in database
-            sock.emit('choice', { gameid: gameid, choice: buttonChoice, points: possiblePoints });
+            sock.emit('choice', { gameid: gameid, choice: buttonChoice, points: possiblePoints, player: player });
             // If there's a winner
             if (winner != 0) {
                 var winnerMessage;

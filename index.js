@@ -13,8 +13,6 @@ require('dotenv').config();
 const Database = require('./db.js');
 const db = new Database();
 
-var playerToggle = 0;
-
 // *******************************************************************
 // Name: Initialize
 // Purpose: Creates tables if they do not exist and connects to database
@@ -249,13 +247,11 @@ io.on('connection', (sock) => {
     // After a choice is made and submitted, the player get's switched and the tables are updated (on screen and database)
     sock.on('choice', async (data) => {
         var col;
-        if (playerToggle == 0) {
+        if (data.player == 0) {
             col = 'p1';
-            playerToggle = 1;
         }
         else {
             col = 'p2';
-            playerToggle = 0;
         }
         col += data.choice;
         await db.updateTableById(data.gameid, col, data.points);
