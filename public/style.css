@@ -116,7 +116,8 @@ hr {
     border: 0.1rem dotted;
 }
 
-/*https://stackoverflow.com/questions/21227287/make-div-scrollable*/
+/* Used to create a scrollable text box */
+/* https://stackoverflow.com/questions/21227287/make-div-scrollable */
 .textbox {
     min-width: 100%;
     height: 12rem;

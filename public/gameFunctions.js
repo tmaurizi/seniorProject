@@ -43,15 +43,6 @@ const saveDice = async (id) => {
         btn.classList.remove('saveDice');
         dice[index][1] = false;
     }
-/*
-    if (btn.style.background == 'lightgray') {
-        btn.style.background = 'red';
-        dice[index][1] = true;
-    }
-    else if (btn.style.background == 'red') { 
-        btn.style.background = 'lightgray';
-        dice[index][1] = false;
-    }*/
 };
 
 // *******************************************************************

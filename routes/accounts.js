@@ -18,6 +18,7 @@ router.get('/login', async (req, res) => {
 // *******************************************************************
 // Name: POST Log in
 // Purpose: Checks that the player exists and then logs them in as session user
+// *******************************************************************
 router.post('/login', async (req, res) => {
     // Gets the inputted email
     const email = req.body.email.trim();
